@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.31" />
+  <meta name="author" content="Justin Dixon">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="Have you been struggling to learn about what decision trees are? Finding it difficult to link pictures of trees with machine learning algorithms? If you answered yes to these questions then this post is for you.
+Decision trees are an amazingly powerful predictive machine learning method that all Data Analysts should know. When I was researching tree-based methods I could never find a hand worked problem. Most other souces simply list the maths, or show the results of a grown tree.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2018-01-22-decisioin-trees/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#0095eb">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+      
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+      
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-92183872-2', 'auto');
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Justin Dixon">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Justin Dixon">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/2018-01-22-decisioin-trees/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@JustinTheDixon">
+  <meta property="twitter:creator" content="@JustinTheDixon">
+  
+  <meta property="og:site_name" content="Justin Dixon">
+  <meta property="og:url" content="/post/2018-01-22-decisioin-trees/">
+  <meta property="og:title" content="Decision Trees | Justin Dixon">
+  <meta property="og:description" content="Have you been struggling to learn about what decision trees are? Finding it difficult to link pictures of trees with machine learning algorithms? If you answered yes to these questions then this post is for you.
+Decision trees are an amazingly powerful predictive machine learning method that all Data Analysts should know. When I was researching tree-based methods I could never find a hand worked problem. Most other souces simply list the maths, or show the results of a grown tree.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2015-07-23T21:13:14-05:00">
+  
+  <meta property="article:modified_time" content="2015-07-23T21:13:14-05:00">
+  
+
+  
+
+  <title>Decision Trees | Justin Dixon</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Justin Dixon</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications_selected">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">Decision Trees</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2015-07-23 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
+      Jul 23, 2015
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Justin Dixon">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    12 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/2018-01-22-decisioin-trees/#disqus_thread"></a>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="/categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Decision%20Trees&amp;url=%2fpost%2f2018-01-22-decisioin-trees%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2018-01-22-decisioin-trees%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2018-01-22-decisioin-trees%2f&amp;title=Decision%20Trees"
+         target="_blank" rel="noopener">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2018-01-22-decisioin-trees%2f&amp;title=Decision%20Trees"
+         target="_blank" rel="noopener">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Decision%20Trees&amp;body=%2fpost%2f2018-01-22-decisioin-trees%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+
+    <div class="article-style" itemprop="articleBody">
+      <p>Have you been struggling to learn about what decision trees are? Finding it difficult to link pictures of trees with machine learning algorithms? If you answered yes to these questions then this post is for you.</p>
+<p>Decision trees are an amazingly powerful predictive machine learning method that all Data Analysts should know. When I was researching tree-based methods I could never find a hand worked problem. Most other souces simply list the maths, or show the results of a grown tree. To truly understand the method though I needed to see how the tree was actually grown! So I worked it out and now to save time for you I have put my working into this post.</p>
+<p>The majority of the theory involved in this post is thanks to this paper <span class="citation">(Breiman et al. 1984)</span> whilst the mathematics is taken from <span class="citation">(Friedman, Hastie, and Tibshirani 2001)</span>.</p>
+<p>The structure of this post follows closely to how I learn, and how I hope you learn! First I will list how examples of how decision trees have been used to help motivate the reason for learning, following will be a brief highlight of the advantages and disadvantages and then we can go over the theory. Finally we will go through some worked problems.</p>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<p>So, do people use decision trees in practice? Yes they do! These examples are in credit to <a href="https://github.com/michaeldorner/DecisionTrees">Micheal Dorner</a>. I’ve given used decision trees in my Masters thesis.</p>
+<ul>
+<li><strong>Astronomy:</strong> Distinguishing between stars and cosmic rays in images collected by the Hubble Space Telescope.</li>
+<li><strong>Medicine:</strong> Diagnosis of the ovarian cancer.</li>
+<li><strong>Economy:</strong> Stock trading.</li>
+<li><strong>Geography:</strong> To predict and correct errors in topographical and geological data.</li>
+<li><strong>Personally:</strong> Predict the probabilities of winning for teams in professional Dota 2 matches.</li>
+</ul>
+</div>
+<div id="table-of-advantages-and-disadvantages" class="section level2">
+<h2>Table of advantages and disadvantages</h2>
+<center>
+<table style="width:42%;">
+<colgroup>
+<col width="19%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Advantages</th>
+<th align="center">Disadvantages</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Easy to understand</td>
+<td align="center">Overfits thet training data</td>
+</tr>
+<tr class="even">
+<td>Resistant to outliers and weak features</td>
+<td align="center">Stuggles with continuos depedent variables</td>
+</tr>
+<tr class="odd">
+<td>Easy to implement in practice</td>
+<td align="center">Need important variables</td>
+</tr>
+<tr class="even">
+<td>can handle datasets with missing values and errors</td>
+<td align="center">Trees and unstable</td>
+</tr>
+<tr class="odd">
+<td>Makes no assumptions above the underlying distributions</td>
+<td align="center">Lack of smoothness</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>Advantages:</p>
+<ul>
+<li><strong>Easy to understand:</strong> When a decision tree constructed you can view the decision rules in a nice looking tree diagram, hence the name!</li>
+<li><strong>Resistant to outliers and weak features:</strong> The splitting criteria does not care greatly how far values are from the decision boundary. The splitting criteria splits according the sstrongest features first, meaning as good, strong, splits are already happened before weak features enter the equation their influence is minimised.</li>
+<li><strong>Easy to implement in practice:</strong> As the model is resistant to outliers and weak features in practice you do not need to spend as much time testing different model specifications.</li>
+<li><strong>Can handle datasets with missing values and errors:</strong> Similar to being resistant to outliers and weak features.</li>
+<li><strong>Makes no assumptions about the underlying distributions:</strong> This may not so important in practice but it makes the model theorectically more appealing.</li>
+</ul>
+<p>Disadvantages:</p>
+<ul>
+<li><strong>Stuggles with continuous depedent variables:</strong> Due to the leafs containing several observations that are then averaged the effect is a prediction space that is not smooth. This creates highly accurate regression predictions difficult to achieve.<br />
+</li>
+<li><strong>Need important variables:</strong> Without strong predictors tree based methods lose many of their strengths.</li>
+<li><strong>Trees are unstable:</strong> The structure of an estimated tree can vary significantly between different estimations.</li>
+<li><strong>Overfits the training data</strong>: This is a very large issue but can be resolved using random forests. Which we will cover in the next post.</li>
+</ul>
+</div>
+<div id="the-algorithm" class="section level2">
+<h2>The Algorithm</h2>
+<p>Peasudocode:</p>
+<ol style="list-style-type: decimal">
+<li>Start at the root node.</li>
+<li>For each input, find the set S that minimizes the sum of the node impurities in the two child nodes and choose the split <span class="math inline">\(\{X \in S \}\)</span> that gives the minimum overall X and S.</li>
+<li>If a stopping criterion is reached, exit. Otherwise, apply step 2 to each child node in turn.</li>
+<li>(Optional) Prune the Tree.</li>
+</ol>
+<p>In simplier words to build a tree you node to begin at the first split (or node). Right, so trees are many splits combined together so first we must begin at the first split right? For each predictor/feautre/independent variable you calculate a impurity score. The smallest impurity score is where the split will happen. Once you have split the data (the split does not have to split the data equally in half) you repeat the impurity calculation for both sides of the data. You continue this process until you reach a stopping rule.</p>
+<div id="splitting-criteria---gini-impurity" class="section level3">
+<h3>Splitting criteria - Gini Impurity</h3>
+<p>There are several splitting criteria that can be used but I will be using the Gini method for this tutorial.</p>
+<p><span class="math display">\[ GiniImpurity = \sum_{k \neq k&#39;} \hat{p}_{mk}\hat{p}_{mk&#39;} = \sum^{K}_{k=1} \hat{p}_{mk}(1-\hat{p}_{mk}) \]</span> where</p>
+<p><span class="math display">\[ \hat{p}_{mk} = \frac{1}{N_{m}}\sum_{x_{i}\in R_{m}} I(y_{i} = k)  \]</span></p>
+</div>
+<div id="stopping-criteria---minimum-leaf-size" class="section level3">
+<h3>Stopping criteria - Minimum Leaf Size</h3>
+<p>There are several possible rules for when the splitting algorithm should stop. This include:</p>
+<ul>
+<li>If a node becomes pure; that is, all cases in a node have identical values of the dependent variable, the node will not be split.<br />
+</li>
+<li>If all cases in a node have identical values for each predictor, the node will not be split.<br />
+</li>
+<li>If the current tree depth reaches the user-specified maximum tree depth limit value, the tree growing process will stop.<br />
+</li>
+<li>If the size of a node is less than the user-specified minimum node size value, the node will not be split.</li>
+<li>If the split of a node results in a child node whose node size is less than the user-specified minimum child node size value, the node will not be split.</li>
+</ul>
+<p>Other stopping criteria could include an error minimisation rule, but this tends to miss important splits that could happen. That is why it is preferable to grow the tree and then prune it back to an acceptable level. For this tutorial a minimum leaf size of 5 was chosen.</p>
+</div>
+<div id="prunning-criteria---misclarification-rate" class="section level3">
+<h3>Prunning Criteria - Misclarification Rate</h3>
+<p><span class="math display">\[ \frac{1}{N_{m}} \sum_{i \in R_{m}} I(y_{i} \neq k(m)) = 1 - \hat{p}_{mk(m)} \]</span></p>
+</div>
+</div>
+<div id="how-the-algorithm-works---worked-example" class="section level2">
+<h2>How The Algorithm Works - Worked Example</h2>
+<p>Let us begin with a worked simple example. It always helps to understand the intuition to see the basics of the method being used.</p>
+<p>Lets us build a simple dataset to work by hand the problem. The dataset will be ten observations of two classes, 0 or 1, with two predictors, x1 and x2.</p>
+<pre class="r"><code>Class &lt;- as.factor(c(0,0,0,0,0,1,1,1,1,1)) # The 2 class vector
+Predictor1 &lt;- c(4,4.5,5,5.5,3,5.6,6,6.5,6.2,5.9) # Random values for predictor 1
+Predictor2&lt;- c(9,10,11,10,9,8,7,8,7,8) # Similarly
+
+df &lt;- cbind.data.frame(Class, Predictor1, Predictor2) # Combine the class vector and the two predictors
+
+ggplot(data = df, aes(x = Predictor1, y=Predictor2)) + # Plot the two predictors and colour the 
+  geom_point(aes(color=Class), size = 6, alpha = .5) # observations according to which class they belong</code></pre>
+<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>From the graph it is obvious where the split will occur but let us work this problem out by hand. First we will calculate the Gini Impurity for each possible split in the range of each predictor.</p>
+<pre class="r"><code>Predictor1test &lt;- seq(from = 3, to = 7, by  = 0.1) # The potential splits where we calculate the Gini Impurity
+Predictor2test &lt;- seq(from =7, to = 11, by = 0.1)
+
+Gini &lt;- NULL
+
+for(i in Predictor1test) {
+  
+  obs1 &lt;- length(df$Class[which(df$Predictor1 &lt;= i)])
+  
+  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor1 &lt;= i)]), decreasing = TRUE)[1]))
+
+  class1count &lt;- df$Class[which(df$Predictor1 &lt;= i)] == k
+  
+  p1 &lt;- length(class1count[class1count==TRUE]) / obs1
+  
+  p1 &lt;- p1*(1-p1)
+  
+  obs2 &lt;- length(df$Class[which(df$Predictor1 &gt; i)])
+  
+  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor1 &gt; i)]), decreasing = TRUE)[1]))
+
+  class2count &lt;- df$Class[which(df$Predictor1 &gt; i)] == k
+  
+  p2 &lt;- length(class2count[class2count==TRUE]) / obs2
+  
+  p2 &lt;- p2*(1-p2) 
+  
+  p &lt;- (p1 * obs1/(obs1 +obs2) + p2 * obs2/(obs1 +obs2))  
+  
+  Gini &lt;- rbind(Gini, p1*(1-p1) + p2*(1-p2))
+  
+  
+}
+
+Predictor1test&lt;- cbind(Predictor1test, Gini)
+
+
+
+Gini &lt;- NULL
+
+for(i in Predictor2test) {
+  
+  obs1 &lt;- length(df$Class[which(df$Predictor2 &lt;= i)])
+  
+  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor2 &lt;= i)]), decreasing = TRUE)[1]))
+
+  class1count &lt;- df$Class[which(df$Predictor2 &lt;= i)] == k
+  
+  p1 &lt;- length(class1count[class1count==TRUE]) / obs1
+  
+  p1 &lt;- 1*(1-p1)
+  
+  obs2 &lt;- length(df$Class[which(df$Predictor2 &gt; i)])
+  
+  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor2 &gt; i)]), decreasing = TRUE)[1]))
+
+  class2count &lt;- df$Class[which(df$Predictor2 &gt; i)] == k
+  
+  p2 &lt;- length(class2count[class2count==TRUE]) / obs2
+  
+  p2 &lt;- p2*(1-p2) 
+  
+  p &lt;- (p1 * obs1/(obs1 +obs2) + p2 * obs2/(obs1 +obs2))  
+  
+  Gini &lt;- rbind(Gini, p1*(1-p1) + p2*(1-p2))
+  
+  
+}
+
+Predictor2test&lt;- cbind(Predictor2test, Gini)
+Predictor1test &lt;- as.data.frame(Predictor1test)
+Predictor2test &lt;- as.data.frame(Predictor2test)
+
+ggplot(data = Predictor1test, aes(x=Predictor1test, y=V2)) + 
+  geom_line()</code></pre>
+<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can see that the most pure split for predictor1 is at 5.5. All other splits leave some impurity in the resulting spaces.</p>
+<pre class="r"><code>ggplot(data = Predictor2test, aes(x=Predictor2test, y=V2)) + 
+  geom_line()</code></pre>
+<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Here we can see a region where the Gini Impurity is minimised. Any value here would be suitable. Now we can observe a hand calculation of the Gini Impurity for prediction1 = 5.5.</p>
+<center>
+<img src="/img/ClassificationTree.png" alt="optional caption text" />
+</center>
+<p>Well with a minimum off 5 observations per leaf we are already at the stopping criteria but let us see the misclassification for each off our potential stopping criteria.</p>
+<pre class="r"><code>
+miserr &lt;- NULL
+
+for(i in Predictor1test[,1]) {
+  
+    obs1 &lt;- length(df$Class[which(df$Predictor1 &lt;= i)])
+  
+  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor1 &lt;= i)]), decreasing = TRUE)[1]))
+
+  class1count &lt;- df$Class[which(df$Predictor1 &lt;= i)] == k
+  
+  p1 &lt;- max(length(class1count[class1count==TRUE]) / obs1, (1-length(class1count[class1count==TRUE]) / obs1))
+  
+  obs2 &lt;- length(df$Class[which(df$Predictor1 &gt; i)])
+  
+  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor1 &gt; i)]), decreasing = TRUE)[1]))
+
+  class2count &lt;- df$Class[which(df$Predictor1 &gt; i)] == k
+  
+   p2 &lt;- max( length(class2count[class2count==TRUE]) / obs2, (1- length(class2count[class2count==TRUE]) / obs2))
+  
+  p &lt;- (p1 * obs1/(obs1 +obs2) + p2 * obs2/(obs1 +obs2))
+  
+  miserr &lt;- rbind(miserr, (1-p))
+  
+  
+}
+
+Predictor1test&lt;- cbind(Predictor1test, miserr)
+
+miserr &lt;- NULL
+
+for(i in Predictor2test[,1]) {
+  
+  obs1 &lt;- length(df$Class[which(df$Predictor2 &lt;= i)])
+  
+  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor2 &lt;= i)]), decreasing = TRUE)[1]))
+  
+  class1count &lt;- df$Class[which(df$Predictor2 &lt;= i)] == k
+  
+  p1 &lt;- max(length(class1count[class1count==TRUE]) / obs1, (1-length(class1count[class1count==TRUE]) / obs1))
+  
+  obs2 &lt;- length(df$Class[which(df$Predictor2 &gt; i)])
+  
+  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor2 &gt; i)]), decreasing = TRUE)[1]))
+
+  class2count &lt;- df$Class[which(df$Predictor2 &gt; i)] == k
+  
+  p2 &lt;- max( length(class2count[class2count==TRUE]) / obs2, (1- length(class2count[class2count==TRUE]) / obs2))
+  
+  p &lt;- (p1 * obs1/(obs1 +obs2) + p2 * obs2/(obs1 +obs2))
+  
+  miserr &lt;- rbind(miserr, (1 - p))
+  
+  
+}
+
+Predictor2test&lt;- cbind(Predictor2test, miserr)
+
+
+
+Predictor1test &lt;- as.data.frame(Predictor1test)
+Predictor2test &lt;- as.data.frame(Predictor2test)
+
+ggplot(data = Predictor1test, aes(x=Predictor1test, y=miserr)) + 
+  geom_line()</code></pre>
+<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>
+ggplot(data = Predictor2test, aes(x=Predictor2test, y=miserr)) + 
+  geom_line()</code></pre>
+<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Similar to the case with the Gini Impurity we can see the regions where the measure is minimised. Now we can go through a hand drawn problem and see the calculation in action.</p>
+<center>
+<img src="/img/missclarification.png" alt="optional caption text" />
+</center>
+<p>Now with such a small dataset it does not make sense to prune the tree but let us continue to see an example with real data.</p>
+</div>
+<div id="example-classification-tree" class="section level2">
+<h2>Example: Classification Tree</h2>
+<p>For this example we will use the iris dataset that comes packed with R. There are three species of iris flower: setosa, versicolor, and virgincia. We will use the classification tree process to separate the feaures of Sepal Length, Sepal Width, Pdeal Length, and Petal Width.</p>
+<div id="plot-the-class-with-each-predictator-variable" class="section level3">
+<h3>Plot the class with each predictator variable</h3>
+<center>
+<img src="/img/IrisInitial.gif" alt="Iris data plotted with each combination of predictor" />
+</center>
+<p>From the data it is easy to see that the different species of iris flower are fairly see to separate by hand. Try it yourself, where would you draw the line to separate the species?</p>
+</div>
+<div id="build-the-tree" class="section level3">
+<h3>Build the tree</h3>
+<pre class="r"><code>Tree &lt;- rpart(Species ~ ., data=iris, parms = list(split = &#39;gini&#39;) )</code></pre>
+</div>
+<div id="plot-the-decisions" class="section level3">
+<h3>Plot the Decisions</h3>
+<pre class="r"><code>knitr::kable(Tree$splits, digits = 2)</code></pre>
+<p>There are quite a few splits here! So let us look at the two most important splits, Petal.Width and Petal.Length.</p>
+<center>
+<img src="/img/PetalLength.gif" alt="Where the split happens with PetalLength = 2.5" />
+</center>
+<center>
+<img src="/img/PetalWidth.gif" alt="Where the splits occure when PetalWidth = 0.8" />
+</center>
+<pre class="r"><code>rpart.plot(Tree)</code></pre>
+<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Talk about this here</p>
+</div>
+</div>
+<div id="regression-example" class="section level2">
+<h2>Regression Example</h2>
+<div id="splitting-criteria--" class="section level3">
+<h3>Splitting Criteria -</h3>
+<p><span class="math display">\[ f(x) = \sum^{M}_{m=1} c_{m}I(x \in R_{m}) \]</span></p>
+<p><span class="math display">\[ \hat{c}_{m} = ave(y_{i} |c_{i} \in R_{m} ) \]</span></p>
+<p><span class="math display">\[ R_{1}(j,s) = \{X|X \leq s \} \]</span> and <span class="math display">\[R_{2}(j,s) = \{X|X &gt; s \} \]</span></p>
+<p><span class="math display">\[ \min_{j,s} [\min_{c1} \sum_{x_{i} \in R_{1}(j,s)}(y_{i} -c_{1})^2 +  \min_{c2} \sum_{x_{i} \in R_{2}(j,s)}(y_{i} -c_{2})^2 ] \]</span></p>
+<p><span class="math display">\[ \hat{c}_{1} = ave(y_{i} | x_{i} \in R_{1}(j,s)) \]</span> and <span class="math display">\[ \hat{c}_{2} = ave(y_{i} | x_{i} \in R_{2}(j,s)) \]</span></p>
+</div>
+<div id="stopping-criteria---min-leaf-size-of-5" class="section level3">
+<h3>Stopping Criteria - Min leaf size of 5</h3>
+</div>
+<div id="pruning-criteria---cost-complexity-criteria" class="section level3">
+<h3>Pruning Criteria - Cost complexity criteria</h3>
+<p><span class="math display">\[ N_{i} = \#\{x_{i} \in R_{m} \} \]</span></p>
+<p><span class="math display">\[ \hat{c}_{m} = \frac{1}{N_{m}} \sum_{x_{i} \in R_{m}} y_{i} \]</span></p>
+<p><span class="math display">\[ Q_{m}(T) = \frac{1}{N_{m}} \sum_{x_{i} \in R_{m}} (y_{i} - \hat{c}_{m})^2 \]</span></p>
+<p>define cost complexity,</p>
+<p><span class="math display">\[ C_{\alpha}(T) = \sum^{|T|}_{m=1} N_{m}Q_{m}(T) + \alpha|T| \]</span></p>
+<p>The idea is to find for <span class="math inline">\(\alpha\)</span>, the subtree to minimize <span class="math display">\[C_{\alpha}(T) \]</span>. The tuning parameter <span class="math inline">\(\alpha \geq 0\)</span> governs the tradeoff between tree size and its goodness of fit to the data. Large values of <span class="math inline">\(\alpha\)</span> result in smaller trees and conversly for smaller values of <span class="math inline">\(\alpha\)</span>. As the notation suggests, with <span class="math inline">\(\alpha = 0\)</span> the solution is the full tree.</p>
+<p>To adaptive choose <span class="math inline">\(\alpha\)</span> use the weakest link pruning: sucessively collapse the internal node that produces the smallest per-node increase in <span class="math inline">\(\sum_{m} N_{m}Q_{m}(T)\)</span> (root) tree. Estimation of <span class="math inline">\(\alpha\)</span> is achieved by 5-fold or 10-fold cross validation: we choose the value <span class="math inline">\(\hat{\alpha}\)</span> to minimize the cross-validated sum of squares.</p>
+</div>
+<div id="the-data-usa-arrests" class="section level3">
+<h3>The Data: USA Arrests</h3>
+<pre class="r"><code>ggplot(data = USArrests, aes(x = Assault, y = UrbanPop)) + 
+  geom_point(aes(color=Murder), size = 6, alpha = .5)</code></pre>
+<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>RegressionTree &lt;- rpart(Murder~ Assault + UrbanPop, data=USArrests)
+knitr::kable(RegressionTree$splits)</code></pre>
+<pre class="r"><code>saveGIF(expr = {
+  print(ggplot(data = USArrests, aes(x = Assault, y = UrbanPop)) + 
+  geom_point(aes(color=Murder), size = 6, alpha = .5) +
+  geom_vline(xintercept = 176, colour = &quot;red&quot;))
+  #geom_hline(yintercept = 57.5) +
+  #geom_hline(yintercept = 69) +
+  #geom_vline(xintercept = 104)
+  #geom_hline(yintercept = 58.5) +
+  #geom_hline(yintercept = 51.5) +
+  #geom_hline(yintercept = 66.5) +
+  #geom_vline(xintercept = 243.5) +
+  #geom_vline(xintercept = 195.5)
+  
+  print(ggplot(data = USArrests, aes(x = Assault, y = UrbanPop)) + 
+  geom_point(aes(color=Murder), size = 6, alpha = .5) +
+  geom_vline(xintercept = 176, colour = &quot;black&quot;) + 
+  geom_hline(yintercept = 57.5, colour = &quot;red&quot;))
+  #geom_hline(yintercept = 69) +
+  #geom_vline(xintercept = 104)
+  #geom_hline(yintercept = 58.5) +
+  #geom_hline(yintercept = 51.5) +
+  #geom_hline(yintercept = 66.5) +
+  #geom_vline(xintercept = 243.5) +
+  #geom_vline(xintercept = 195.5)
+  
+  print(ggplot(data = USArrests, aes(x = Assault, y = UrbanPop)) + 
+  geom_point(aes(color=Murder), size = 6, alpha = .5) +
+  geom_vline(xintercept = 176, colour = &quot;black&quot;) + 
+  geom_hline(yintercept = 57.5, colour = &quot;black&quot;) +
+  geom_hline(yintercept = 69, colour = &quot;red&quot;))
+  #geom_vline(xintercept = 104)
+  #geom_hline(yintercept = 58.5) +
+  #geom_hline(yintercept = 51.5) +
+  #geom_hline(yintercept = 66.5) +
+  #geom_vline(xintercept = 243.5) +
+  #geom_vline(xintercept = 195.5)
+  
+  print(ggplot(data = USArrests, aes(x = Assault, y = UrbanPop)) + 
+  geom_point(aes(color=Murder), size = 6, alpha = .5) +
+  geom_vline(xintercept = 176, colour = &quot;black&quot;) + 
+  geom_hline(yintercept = 57.5, colour = &quot;black&quot;) +
+  geom_hline(yintercept = 69, colour = &quot;black&quot;) +
+  geom_vline(xintercept = 104, colour = &quot;red&quot;))
+  #geom_hline(yintercept = 58.5)
+  #geom_hline(yintercept = 51.5) +
+  #geom_hline(yintercept = 66.5) +
+  #geom_vline(xintercept = 243.5) +
+  #geom_vline(xintercept = 195.5)
+  
+
+}, movie.name = &quot;/home/justin/bobsaget4lyfe.github.io/public/img/regression.gif&quot;, im.convert = &quot;convert&quot;)</code></pre>
+<center>
+<img src="/img/regression.gif" alt="gif" />
+</center>
+</div>
+<div id="the-constructed-tree" class="section level3">
+<h3>The Constructed Tree</h3>
+<pre class="r"><code>rpart.plot(RegressionTree)</code></pre>
+<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>Next up will be a post on Random Forests. How trees are implemented in the real world.</p>
+</div>
+<div id="further-reading" class="section level1">
+<h1>Further Reading</h1>
+<p><a href="https://en.wikipedia.org/wiki/Decision_tree_learning" class="uri">https://en.wikipedia.org/wiki/Decision_tree_learning</a></p>
+<p><a href="http://www.stat.cmu.edu/~cshalizi/350-2006/lecture-10.pdf" class="uri">http://www.stat.cmu.edu/~cshalizi/350-2006/lecture-10.pdf</a></p>
+<p><a href="https://datajobs.com/data-science-repo/Decision-Trees-%5BRokach-and-Maimon%5D.pdf" class="uri">https://datajobs.com/data-science-repo/Decision-Trees-[Rokach-and-Maimon].pdf</a></p>
+<p><a href="http://www.stat.wisc.edu/~loh/treeprogs/guide/wires11.pdf" class="uri">http://www.stat.wisc.edu/~loh/treeprogs/guide/wires11.pdf</a></p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-breiman1984classification">
+<p>Breiman, Leo, Jerome Friedman, Charles J Stone, and Richard A Olshen. 1984. <em>Classification and Regression Trees</em>. CRC press.</p>
+</div>
+<div id="ref-friedman2001elements">
+<p>Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2001. <em>The Elements of Statistical Learning</em>. Vol. 1. Springer series in statistics New York.</p>
+</div>
+</div>
+</div>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/data-analysis">Data Analysis</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/tutorial">Tutorial</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/decision-trees">Decision Trees</a>
+  
+</div>
+
+
+
+
+    
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "@disqus_xZMQc2VwQ8" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2018 &middot; 
+
+      Powered by the
+      <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+      <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+    <script id="dsq-count-scr" src="//@disqus_xZMQc2VwQ8.disqus.com/count.js" async></script>
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML" integrity="sha512-tOav5w1OjvsSJzePRtt2uQPFwBoHt1VZcUq8l8nm5284LEKE9FSJBQryzMBzHxY5P0zRdNqEcpLIRVYFNgu1jw==" crossorigin="anonymous"></script>
+    
+    
+
+  </body>
+</html>
+
