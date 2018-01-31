@@ -223,7 +223,7 @@ Predictor2test&amp;lt;- cbind.data.frame(Predictor2test, miserr)&lt;/code&gt;&lt
 &lt;p&gt;&lt;img src=&#34;/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Similar to the case with the Gini Impurity we can see the regions where the measure is minimised. Now we can go through a hand drawn problem and see the calculation in action.&lt;/p&gt;
 &lt;center&gt;
-&lt;img src=&#34;/img/misclasspart1.png&#34; alt=&#34;optional caption text&#34; /&gt;
+&lt;img src=&#34;/img/missclasspart1.png&#34; alt=&#34;optional caption text&#34; /&gt;
 &lt;/center&gt;
 &lt;center&gt;
 &lt;img src=&#34;/img/misclasspart2.png&#34; alt=&#34;optional caption text&#34; /&gt;
