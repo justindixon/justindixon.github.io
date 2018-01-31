@@ -97,9 +97,9 @@ Decision trees are an amazingly powerful predictive machine learning method that
 Decision trees are an amazingly powerful predictive machine learning method that all Data Analysts should know. When I was researching tree-based methods I could never find a hand worked problem. Most other souces simply list the maths, or show the results of a grown tree.">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2015-07-23T21:13:14-05:00">
+  <meta property="article:published_time" content="2018-01-31T21:13:14-05:00">
   
-  <meta property="article:modified_time" content="2015-07-23T21:13:14-05:00">
+  <meta property="article:modified_time" content="2018-01-31T21:13:14-05:00">
   
 
   
@@ -252,8 +252,8 @@ Decision trees are an amazingly powerful predictive machine learning method that
 
   <span class="article-date">
     
-    <time datetime="2015-07-23 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
-      Jul 23, 2015
+    <time datetime="2018-01-31 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
+      Jan 31, 2018
     </time>
   </span>
   <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
@@ -280,7 +280,7 @@ Decision trees are an amazingly powerful predictive machine learning method that
   <span class="article-categories">
     <i class="fa fa-folder"></i>
     
-    <a href="/categories/r">R</a
+    <a href="/categories/data-analysis">Data Analysis</a
     >
     
   </span>
@@ -336,12 +336,12 @@ Decision trees are an amazingly powerful predictive machine learning method that
 
     <div class="article-style" itemprop="articleBody">
       <p>Have you been struggling to learn about what decision trees are? Finding it difficult to link pictures of trees with machine learning algorithms? If you answered yes to these questions then this post is for you.</p>
-<p>Decision trees are an amazingly powerful predictive machine learning method that all Data Analysts should know. When I was researching tree-based methods I could never find a hand worked problem. Most other souces simply list the maths, or show the results of a grown tree. To truly understand the method though I needed to see how the tree was actually grown! So I worked it out and now to save time for you I have put my working into this post.</p>
+<p>Decision trees are an amazingly powerful predictive machine learning method that all Data Analysts should know. When I was researching tree-based methods I could never find a hand worked problem. Most other souces simply list the maths, or show the results of a grown tree. To truly understand the method though I needed to see how trees are actually grown! So I worked it out and now to save time for you I have put my working into this post.</p>
 <p>The majority of the theory involved in this post is thanks to this paper <span class="citation">(Breiman et al. 1984)</span> whilst the mathematics is taken from <span class="citation">(Friedman, Hastie, and Tibshirani 2001)</span>.</p>
-<p>The structure of this post follows closely to how I learn, and how I hope you learn! First I will list how examples of how decision trees have been used to help motivate the reason for learning, following will be a brief highlight of the advantages and disadvantages and then we can go over the theory. Finally we will go through some worked problems.</p>
-<div id="examples" class="section level2">
-<h2>Examples</h2>
-<p>So, do people use decision trees in practice? Yes they do! These examples are in credit to <a href="https://github.com/michaeldorner/DecisionTrees">Micheal Dorner</a>. I’ve given used decision trees in my Masters thesis.</p>
+<p>The structure of this post follows closely to how I learn, and how I hope you learn! First I will list examples of how decision trees have been used and their advantages and disadvantages. Next Ill present a worked example and following will be an example of classification and regression example.</p>
+<div id="examples" class="section level1">
+<h1>Examples</h1>
+<p>Decision Trees are used in a wide variety of fields! These examples are in credit to <a href="https://github.com/michaeldorner/DecisionTrees">Micheal Dorner</a>. I have used decision trees in my Masters thesis too.</p>
 <ul>
 <li><strong>Astronomy:</strong> Distinguishing between stars and cosmic rays in images collected by the Hubble Space Telescope.</li>
 <li><strong>Medicine:</strong> Diagnosis of the ovarian cancer.</li>
@@ -350,13 +350,13 @@ Decision trees are an amazingly powerful predictive machine learning method that
 <li><strong>Personally:</strong> Predict the probabilities of winning for teams in professional Dota 2 matches.</li>
 </ul>
 </div>
-<div id="table-of-advantages-and-disadvantages" class="section level2">
-<h2>Table of advantages and disadvantages</h2>
+<div id="table-of-advantages-and-disadvantages" class="section level1">
+<h1>Table of advantages and disadvantages</h1>
 <center>
-<table style="width:42%;">
+<table style="width:78%;">
 <colgroup>
-<col width="19%" />
-<col width="22%" />
+<col width="37%" />
+<col width="40%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -367,22 +367,22 @@ Decision trees are an amazingly powerful predictive machine learning method that
 <tbody>
 <tr class="odd">
 <td>Easy to understand</td>
-<td align="center">Overfits thet training data</td>
+<td align="center">Overfits the training data</td>
 </tr>
 <tr class="even">
 <td>Resistant to outliers and weak features</td>
-<td align="center">Stuggles with continuos depedent variables</td>
+<td align="center">Stuggles with continuous depedent variables</td>
 </tr>
 <tr class="odd">
 <td>Easy to implement in practice</td>
 <td align="center">Need important variables</td>
 </tr>
 <tr class="even">
-<td>can handle datasets with missing values and errors</td>
-<td align="center">Trees and unstable</td>
+<td>Can handle datasets with missing values and errors</td>
+<td align="center">Trees are unstable</td>
 </tr>
 <tr class="odd">
-<td>Makes no assumptions above the underlying distributions</td>
+<td>Makes no assumptions about the underlying distributions</td>
 <td align="center">Lack of smoothness</td>
 </tr>
 </tbody>
@@ -390,42 +390,44 @@ Decision trees are an amazingly powerful predictive machine learning method that
 </center>
 <p>Advantages:</p>
 <ul>
-<li><strong>Easy to understand:</strong> When a decision tree constructed you can view the decision rules in a nice looking tree diagram, hence the name!</li>
-<li><strong>Resistant to outliers and weak features:</strong> The splitting criteria does not care greatly how far values are from the decision boundary. The splitting criteria splits according the sstrongest features first, meaning as good, strong, splits are already happened before weak features enter the equation their influence is minimised.</li>
-<li><strong>Easy to implement in practice:</strong> As the model is resistant to outliers and weak features in practice you do not need to spend as much time testing different model specifications.</li>
+<li><strong>Easy to understand:</strong> When a decision tree is constructed you can view the decision rules in a nice looking tree diagram, hence the name!</li>
+<li><strong>Resistant to outliers and weak features:</strong> The splitting criteria does not care greatly how far values are from the decision boundary. The splitting criteria splits according the strongest features first which minimises the harm of the weak features (the weak features are splitting already split data = smaller effect).</li>
+<li><strong>Easy to implement in practice:</strong> As the model is resistant to outliers and weak features in practice you do not need to spend as much time testing different feature input combinations.</li>
 <li><strong>Can handle datasets with missing values and errors:</strong> Similar to being resistant to outliers and weak features.</li>
 <li><strong>Makes no assumptions about the underlying distributions:</strong> This may not so important in practice but it makes the model theorectically more appealing.</li>
 </ul>
 <p>Disadvantages:</p>
 <ul>
-<li><strong>Stuggles with continuous depedent variables:</strong> Due to the leafs containing several observations that are then averaged the effect is a prediction space that is not smooth. This creates highly accurate regression predictions difficult to achieve.<br />
+<li><strong>Overfits the training data</strong>: This is a very large issue but can be minimised using random forests. Which we will cover in the next post.</li>
+<li><strong>Stuggles with continuous depedent variables:</strong> Due to the leafs containing several observations which are averaged the prediction space is not smooth. This makes highly accurate regression predictions difficult to achieve.<br />
 </li>
 <li><strong>Need important variables:</strong> Without strong predictors tree based methods lose many of their strengths.</li>
 <li><strong>Trees are unstable:</strong> The structure of an estimated tree can vary significantly between different estimations.</li>
-<li><strong>Overfits the training data</strong>: This is a very large issue but can be resolved using random forests. Which we will cover in the next post.</li>
 </ul>
 </div>
-<div id="the-algorithm" class="section level2">
-<h2>The Algorithm</h2>
-<p>Peasudocode:</p>
+<div id="the-algorithm" class="section level1">
+<h1>The Algorithm</h1>
 <ol style="list-style-type: decimal">
 <li>Start at the root node.</li>
-<li>For each input, find the set S that minimizes the sum of the node impurities in the two child nodes and choose the split <span class="math inline">\(\{X \in S \}\)</span> that gives the minimum overall X and S.</li>
+<li>For each input, find the set <span class="math inline">\(S\)</span> that minimizes the sum of the node impurities in the two child nodes and choose the split <span class="math inline">\(\{X \in S \}\)</span> that gives the minimum overall <span class="math inline">\(X\)</span> and <span class="math inline">\(S\)</span>.</li>
 <li>If a stopping criterion is reached, exit. Otherwise, apply step 2 to each child node in turn.</li>
-<li>(Optional) Prune the Tree.</li>
 </ol>
-<p>In simplier words to build a tree you node to begin at the first split (or node). Right, so trees are many splits combined together so first we must begin at the first split right? For each predictor/feautre/independent variable you calculate a impurity score. The smallest impurity score is where the split will happen. Once you have split the data (the split does not have to split the data equally in half) you repeat the impurity calculation for both sides of the data. You continue this process until you reach a stopping rule.</p>
-<div id="splitting-criteria---gini-impurity" class="section level3">
-<h3>Splitting criteria - Gini Impurity</h3>
-<p>There are several splitting criteria that can be used but I will be using the Gini method for this tutorial.</p>
+<p>In simplier words to build the tree you need to decide where the splits(branches) are going to happen. You need to calculate for each possible split for each input variable an ‘impurity’ measure. For classification trees this impurity measure can be the Gini Index. This is just a measure that says how well the split divides the data. The smallest impurity score is where the split will happen.</p>
+<p>After you have divided the data into two regions you continue to split those regions again and again until you reach some stopping rule. Once the stopping rule is reached it is possible to <em>prune</em> the tree. This is typically done occuring to some <em>cost complexity</em> measure where non-terminal splits can be removed.</p>
+<div id="splitting-criteria---gini-impurity" class="section level2">
+<h2>Splitting criteria - Gini Impurity</h2>
+<p>There are several splitting criteria that can be used but I will be using the Gini method for this worked example. We can define the Gini Impuirty as:</p>
 <p><span class="math display">\[ GiniImpurity = \sum_{k \neq k&#39;} \hat{p}_{mk}\hat{p}_{mk&#39;} = \sum^{K}_{k=1} \hat{p}_{mk}(1-\hat{p}_{mk}) \]</span> where</p>
-<p><span class="math display">\[ \hat{p}_{mk} = \frac{1}{N_{m}}\sum_{x_{i}\in R_{m}} I(y_{i} = k)  \]</span></p>
+<p><span class="math display">\[ \hat{p}_{mk} = \frac{1}{N_{m}}\sum_{x_{i}\in R_{m}} I(y_{i} = k)  \]</span> and</p>
+<p><span class="math display">\[ N_{i} = \#\{x_{i} \in R_{m} \} \]</span> and</p>
+<p><span class="math display">\[ R_{1}(j,s) = \{X|X \leq s \} \]</span></p>
+<p><span class="math display">\[R_{2}(j,s) = \{X|X &gt; s \} \]</span></p>
 </div>
-<div id="stopping-criteria---minimum-leaf-size" class="section level3">
-<h3>Stopping criteria - Minimum Leaf Size</h3>
-<p>There are several possible rules for when the splitting algorithm should stop. This include:</p>
+<div id="stopping-criteria---minimum-leaf-size" class="section level2">
+<h2>Stopping criteria - Minimum Leaf Size</h2>
+<p>There are several possible rules for when the splitting algorithm should stop. These possibilities include:</p>
 <ul>
-<li>If a node becomes pure; that is, all cases in a node have identical values of the dependent variable, the node will not be split.<br />
+<li>If a split region only has identical values of the dependent variable then that region will not be split any futher.<br />
 </li>
 <li>If all cases in a node have identical values for each predictor, the node will not be split.<br />
 </li>
@@ -436,309 +438,409 @@ Decision trees are an amazingly powerful predictive machine learning method that
 </ul>
 <p>Other stopping criteria could include an error minimisation rule, but this tends to miss important splits that could happen. That is why it is preferable to grow the tree and then prune it back to an acceptable level. For this tutorial a minimum leaf size of 5 was chosen.</p>
 </div>
-<div id="prunning-criteria---misclarification-rate" class="section level3">
-<h3>Prunning Criteria - Misclarification Rate</h3>
-<p><span class="math display">\[ \frac{1}{N_{m}} \sum_{i \in R_{m}} I(y_{i} \neq k(m)) = 1 - \hat{p}_{mk(m)} \]</span></p>
+<div id="prunning-criteria---misclarification-rate" class="section level2">
+<h2>Prunning Criteria - Misclarification Rate</h2>
+<p><span class="math display">\[ \frac{1}{N_{m}} \sum_{i \in R_{m}} I(y_{i} \neq k(m)) = 1 - \hat{p}_{mk(m)} \]</span> where</p>
+<p><span class="math display">\[ k(m) = argmax_{k}\hat{p}_{mk} \]</span></p>
 </div>
 </div>
-<div id="how-the-algorithm-works---worked-example" class="section level2">
-<h2>How The Algorithm Works - Worked Example</h2>
+<div id="worked-example" class="section level1">
+<h1>Worked Example</h1>
 <p>Let us begin with a worked simple example. It always helps to understand the intuition to see the basics of the method being used.</p>
-<p>Lets us build a simple dataset to work by hand the problem. The dataset will be ten observations of two classes, 0 or 1, with two predictors, x1 and x2.</p>
+<p>Lets us build a simple dataset to work the problem by hand. The dataset will be ten observations of two classes, 0 or 1, with two predictors, X1 and X2.</p>
 <pre class="r"><code>Class &lt;- as.factor(c(0,0,0,0,0,1,1,1,1,1)) # The 2 class vector
-Predictor1 &lt;- c(4,4.5,5,5.5,3,5.6,6,6.5,6.2,5.9) # Random values for predictor 1
-Predictor2&lt;- c(9,10,11,10,9,8,7,8,7,8) # Similarly
-
-df &lt;- cbind.data.frame(Class, Predictor1, Predictor2) # Combine the class vector and the two predictors
-
-ggplot(data = df, aes(x = Predictor1, y=Predictor2)) + # Plot the two predictors and colour the 
+X1 &lt;- c(4,4.5,5,5.5,3,5.6,6,6.5,6.2,5.9) # Random values for predictor 1
+X2&lt;- c(9,10,11,10,9,8,7,8,7,8) # Similarly
+df &lt;- cbind.data.frame(Class, X1, X2) # Combine the class vector and the two predictors</code></pre>
+<pre class="r"><code>ggplot(data = df, aes(x = X1, y=X2)) + # Plot the two predictors and colour the 
+  ggtitle(label = &quot;The two Predictors with their assoicated Class values&quot;) +
   geom_point(aes(color=Class), size = 6, alpha = .5) # observations according to which class they belong</code></pre>
-<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>From the graph it is obvious where the split will occur but let us work this problem out by hand. First we will calculate the Gini Impurity for each possible split in the range of each predictor.</p>
-<pre class="r"><code>Predictor1test &lt;- seq(from = 3, to = 7, by  = 0.1) # The potential splits where we calculate the Gini Impurity
-Predictor2test &lt;- seq(from =7, to = 11, by = 0.1)
-
-Gini &lt;- NULL
-
-for(i in Predictor1test) {
-  
-  obs1 &lt;- length(df$Class[which(df$Predictor1 &lt;= i)])
-  
-  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor1 &lt;= i)]), decreasing = TRUE)[1]))
-
-  class1count &lt;- df$Class[which(df$Predictor1 &lt;= i)] == k
-  
-  p1 &lt;- length(class1count[class1count==TRUE]) / obs1
-  
-  p1 &lt;- p1*(1-p1)
-  
-  obs2 &lt;- length(df$Class[which(df$Predictor1 &gt; i)])
-  
-  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor1 &gt; i)]), decreasing = TRUE)[1]))
-
-  class2count &lt;- df$Class[which(df$Predictor1 &gt; i)] == k
-  
-  p2 &lt;- length(class2count[class2count==TRUE]) / obs2
-  
-  p2 &lt;- p2*(1-p2) 
-  
-  p &lt;- (p1 * obs1/(obs1 +obs2) + p2 * obs2/(obs1 +obs2))  
-  
-  Gini &lt;- rbind(Gini, p1*(1-p1) + p2*(1-p2))
-  
-  
-}
-
-Predictor1test&lt;- cbind(Predictor1test, Gini)
-
-
-
-Gini &lt;- NULL
-
-for(i in Predictor2test) {
-  
-  obs1 &lt;- length(df$Class[which(df$Predictor2 &lt;= i)])
-  
-  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor2 &lt;= i)]), decreasing = TRUE)[1]))
-
-  class1count &lt;- df$Class[which(df$Predictor2 &lt;= i)] == k
-  
-  p1 &lt;- length(class1count[class1count==TRUE]) / obs1
-  
-  p1 &lt;- 1*(1-p1)
-  
-  obs2 &lt;- length(df$Class[which(df$Predictor2 &gt; i)])
-  
-  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor2 &gt; i)]), decreasing = TRUE)[1]))
-
-  class2count &lt;- df$Class[which(df$Predictor2 &gt; i)] == k
-  
-  p2 &lt;- length(class2count[class2count==TRUE]) / obs2
-  
-  p2 &lt;- p2*(1-p2) 
-  
-  p &lt;- (p1 * obs1/(obs1 +obs2) + p2 * obs2/(obs1 +obs2))  
-  
-  Gini &lt;- rbind(Gini, p1*(1-p1) + p2*(1-p2))
-  
-  
-}
-
-Predictor2test&lt;- cbind(Predictor2test, Gini)
-Predictor1test &lt;- as.data.frame(Predictor1test)
-Predictor2test &lt;- as.data.frame(Predictor2test)
-
-ggplot(data = Predictor1test, aes(x=Predictor1test, y=V2)) + 
-  geom_line()</code></pre>
 <p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>We can see that the most pure split for predictor1 is at 5.5. All other splits leave some impurity in the resulting spaces.</p>
-<pre class="r"><code>ggplot(data = Predictor2test, aes(x=Predictor2test, y=V2)) + 
-  geom_line()</code></pre>
-<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Here we can see a region where the Gini Impurity is minimised. Any value here would be suitable. Now we can observe a hand calculation of the Gini Impurity for prediction1 = 5.5.</p>
-<center>
-<img src="/img/ClassificationTree.png" alt="optional caption text" />
-</center>
-<p>Well with a minimum off 5 observations per leaf we are already at the stopping criteria but let us see the misclassification for each off our potential stopping criteria.</p>
-<pre class="r"><code>
-miserr &lt;- NULL
-
-for(i in Predictor1test[,1]) {
-  
-    obs1 &lt;- length(df$Class[which(df$Predictor1 &lt;= i)])
-  
-  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor1 &lt;= i)]), decreasing = TRUE)[1]))
-
-  class1count &lt;- df$Class[which(df$Predictor1 &lt;= i)] == k
-  
-  p1 &lt;- max(length(class1count[class1count==TRUE]) / obs1, (1-length(class1count[class1count==TRUE]) / obs1))
-  
-  obs2 &lt;- length(df$Class[which(df$Predictor1 &gt; i)])
-  
-  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor1 &gt; i)]), decreasing = TRUE)[1]))
-
-  class2count &lt;- df$Class[which(df$Predictor1 &gt; i)] == k
-  
-   p2 &lt;- max( length(class2count[class2count==TRUE]) / obs2, (1- length(class2count[class2count==TRUE]) / obs2))
-  
-  p &lt;- (p1 * obs1/(obs1 +obs2) + p2 * obs2/(obs1 +obs2))
-  
-  miserr &lt;- rbind(miserr, (1-p))
-  
-  
+<p>From the graph it is obvious how to split the data but lets us worked it out using the algorithm to see how it works. First we will calculate the Gini Impurity for each possible split in the range of each predictor.</p>
+<pre class="r"><code>Predictor1test &lt;- seq(from = 3, to = 7, by  = 0.1) # The potential splits where we calculate the Gini Impurity
+Predictor2test &lt;- seq(from =7, to = 11, by = 0.1) # Similar for Predictor 2
+CalculateP &lt;- function(i, index, m, k) { # Function to calculate the proportion of observations in the split
+  if(m==&quot;L&quot;) {                          # region (m) which match to class (k) 
+    Nm &lt;- length(df$Class[which(df[,index] &lt;= i)]) # The number of observations in the split region Rm
+    Count &lt;- df$Class[which(df[,index] &lt;= i)] == k # The number of observations that match the class k
+  } else {
+    Nm &lt;- length(df$Class[which(df[,index] &gt; i)])
+    Count &lt;- df$Class[which(df[,index] &gt; i)] == k
+  } 
+  P &lt;- length(Count[Count==TRUE]) / Nm # Proportion calculation
+  return(c(P,Nm)) # Returns both the porportion and the number of observations
 }
-
-Predictor1test&lt;- cbind(Predictor1test, miserr)
-
-miserr &lt;- NULL
-
-for(i in Predictor2test[,1]) {
-  
-  obs1 &lt;- length(df$Class[which(df$Predictor2 &lt;= i)])
-  
-  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor2 &lt;= i)]), decreasing = TRUE)[1]))
-  
-  class1count &lt;- df$Class[which(df$Predictor2 &lt;= i)] == k
-  
-  p1 &lt;- max(length(class1count[class1count==TRUE]) / obs1, (1-length(class1count[class1count==TRUE]) / obs1))
-  
-  obs2 &lt;- length(df$Class[which(df$Predictor2 &gt; i)])
-  
-  k &lt;-  as.integer(names(sort(table(df$Class[which(df$Predictor2 &gt; i)]), decreasing = TRUE)[1]))
-
-  class2count &lt;- df$Class[which(df$Predictor2 &gt; i)] == k
-  
-  p2 &lt;- max( length(class2count[class2count==TRUE]) / obs2, (1- length(class2count[class2count==TRUE]) / obs2))
-  
-  p &lt;- (p1 * obs1/(obs1 +obs2) + p2 * obs2/(obs1 +obs2))
-  
-  miserr &lt;- rbind(miserr, (1 - p))
-  
-  
+CalculateGini &lt;- function(x, index) { # Function to calculate the Gini Impurity
+  Gini &lt;- NULL # Create the Gini variables
+  for(i in x) {
+    pl0 &lt;- CalculateP(i, index, &quot;L&quot;, 0) # Proportion in the left region with class 0
+    pl1 &lt;- CalculateP(i, index, &quot;L&quot;, 1)
+    GiniL &lt;- pl0[1]*(1-pl0[1]) + pl1[1]*(1-pl1[1]) # The Fini for the left region
+    pr0 &lt;- CalculateP(i, index, &quot;R&quot;, 0)
+    pr1 &lt;- CalculateP(i, index, &quot;R&quot;, 1)
+    GiniR &lt;- pr0[1]*(1-pr0[1]) + pr1[1]*(1-pr1[1])
+    Gini &lt;- rbind(Gini, sum(GiniL * pl0[2]/(pl0[2] + pr0[2]),GiniR * pr0[2]/(pl0[2] + pr0[2]), na.rm = TRUE)) # Need to weight both left and right Gini scores when combining both
+  }
+  return(Gini)
 }
-
-Predictor2test&lt;- cbind(Predictor2test, miserr)
-
-
-
-Predictor1test &lt;- as.data.frame(Predictor1test)
-Predictor2test &lt;- as.data.frame(Predictor2test)
-
-ggplot(data = Predictor1test, aes(x=Predictor1test, y=miserr)) + 
+Gini &lt;- CalculateGini(Predictor1test, 2)
+Predictor1test&lt;- cbind.data.frame(Predictor1test, Gini)
+Gini &lt;- CalculateGini(Predictor2test, 3)
+Predictor2test&lt;- cbind.data.frame(Predictor2test, Gini)</code></pre>
+<pre class="r"><code>ggplot(data = Predictor1test, aes(x=Predictor1test, y=Gini)) + 
+  ggtitle(&quot;Gini Index For Possible Values Of X1&quot;) +
   geom_line()</code></pre>
 <p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>
-ggplot(data = Predictor2test, aes(x=Predictor2test, y=miserr)) + 
+<p>We can see that the most pure split for predictor1 is at 5.5. All other splits leave some impurity in the resulting spaces.</p>
+<pre class="r"><code>ggplot(data = Predictor2test, aes(x=Predictor2test, y=Gini)) + 
+  ggtitle(&quot;Gini Index For Possible Values Of X2&quot;) +
   geom_line()</code></pre>
 <p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Here we can see a region where the Gini Impurity is minimised. Any value here would be suitable. Now we can observe a hand calculation of the Gini Impurity for X1 = 5.5.</p>
+<center>
+<img src="/img/ginipart1.png" alt="optional caption text" />
+</center>
+<center>
+<img src="/img/ginipart2.png" alt="optional caption text" />
+</center>
+<p>With a minimum off 5 observations per leaf we are already at the stopping criteria but let us see the misclassification for each off our potential stopping criteria for the sake of illumination. Also due to the purity of the split we do not need to prune the tree.</p>
+<pre class="r"><code>CalculatePkm &lt;- function(i, index, m) { # This is different to the other P function is that it calculates the proportion to
+  if(m==&quot;L&quot;) {                          # only the majority class
+    Nm &lt;- length(df$Class[which(df[,index] &lt;= i)]) 
+    Km &lt;- as.integer(names(sort(table(df$Class[which(df[,index] &lt;= i)]), decreasing = TRUE)[1]))
+    Count &lt;- df$Class[which(df[,index] &lt;= i)] == Km
+  } else {
+    Nm &lt;- length(df$Class[which(df[,index] &gt; i)])
+    Km &lt;- as.integer(names(sort(table(df$Class[which(df[,index] &gt; i)]), decreasing = TRUE)[1]))
+    Count &lt;- df$Class[which(df[,index] &gt; i)] == Km
+  } 
+  P &lt;- length(Count[Count==TRUE]) / Nm
+  return(c(P,Nm))
+}
+CalculateMissClass &lt;- function(x, index) {
+  miserr &lt;- NULL
+  for(i in x) {
+    pLkm &lt;- CalculatePkm(i, index, &quot;L&quot;)
+    missclassL &lt;- (1 - pLkm[1])
+    pRkm &lt;- CalculatePkm(i, index, &quot;R&quot;)
+    missclassR &lt;- (1 - pRkm[1])
+    miserr &lt;- rbind(miserr,  sum(missclassL * pLkm[2]/(pLkm[2] + pRkm[2]),missclassR * pRkm[2]/(pLkm[2] + pRkm[2]), na.rm = TRUE))
+  }
+  return(miserr)
+}
+miserr &lt;- CalculateMissClass(Predictor1test[,1], 2)
+Predictor1test&lt;- cbind.data.frame(Predictor1test, miserr)
+miserr &lt;- CalculateMissClass(Predictor2test[,1], 3)
+Predictor2test&lt;- cbind.data.frame(Predictor2test, miserr)</code></pre>
+<pre class="r"><code>ggplot(data = Predictor1test, aes(x=Predictor1test, y=miserr)) + 
+  ggtitle(&quot;Misclassification Error for X1&quot;) +
+  geom_line()</code></pre>
+<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggplot(data = Predictor2test, aes(x=Predictor2test, y=miserr)) + 
+  ggtitle(&quot;Misclassification Error for X2&quot;) +
+  geom_line()</code></pre>
+<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Similar to the case with the Gini Impurity we can see the regions where the measure is minimised. Now we can go through a hand drawn problem and see the calculation in action.</p>
 <center>
-<img src="/img/missclarification.png" alt="optional caption text" />
+<img src="/img/misclasspart1.png" alt="optional caption text" />
+</center>
+<center>
+<img src="/img/misclasspart2.png" alt="optional caption text" />
 </center>
 <p>Now with such a small dataset it does not make sense to prune the tree but let us continue to see an example with real data.</p>
 </div>
-<div id="example-classification-tree" class="section level2">
-<h2>Example: Classification Tree</h2>
-<p>For this example we will use the iris dataset that comes packed with R. There are three species of iris flower: setosa, versicolor, and virgincia. We will use the classification tree process to separate the feaures of Sepal Length, Sepal Width, Pdeal Length, and Petal Width.</p>
-<div id="plot-the-class-with-each-predictator-variable" class="section level3">
-<h3>Plot the class with each predictator variable</h3>
+<div id="example-classification-tree" class="section level1">
+<h1>Example: Classification Tree</h1>
+<p>For this example we will use the iris dataset that comes packed with R. There are three species of the iris flower: setosa, versicolor, and virgincia. We will use the classification tree process to separate the feaures of Sepal Length, Sepal Width, Pdeal Length, and Petal Width.</p>
+<div id="species-of-iris-with-each-predictor-combination" class="section level2">
+<h2>Species of Iris with each Predictor Combination</h2>
 <center>
 <img src="/img/IrisInitial.gif" alt="Iris data plotted with each combination of predictor" />
 </center>
-<p>From the data it is easy to see that the different species of iris flower are fairly see to separate by hand. Try it yourself, where would you draw the line to separate the species?</p>
+<p>From the data you can see that Setosa can be separated easily from the other two species. Try it yourself, where would you draw the line to separate Setosa?</p>
 </div>
-<div id="build-the-tree" class="section level3">
-<h3>Build the tree</h3>
+<div id="build-the-tree" class="section level2">
+<h2>Build the tree</h2>
+<p>Now that we have worked through how the classification tree is grown we can resort to using already established packages to estimate our decision tree for us. I will be using the rpart package for this post but there are many other packages that can estimate trees.</p>
 <pre class="r"><code>Tree &lt;- rpart(Species ~ ., data=iris, parms = list(split = &#39;gini&#39;) )</code></pre>
 </div>
-<div id="plot-the-decisions" class="section level3">
-<h3>Plot the Decisions</h3>
-<pre class="r"><code>knitr::kable(Tree$splits, digits = 2)</code></pre>
-<p>There are quite a few splits here! So let us look at the two most important splits, Petal.Width and Petal.Length.</p>
+<div id="the-splits" class="section level2">
+<h2>The Splits</h2>
+<p>The tree growing process can involve many more splits than the single split from our hand worked problem. Here we can see all the splits that were done when growing this tree.</p>
+<pre class="r"><code>kable(Tree$splits, digits = 2, format = &#39;markdown&#39;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">count</th>
+<th align="right">ncat</th>
+<th align="right">improve</th>
+<th align="right">index</th>
+<th align="right">adj</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Petal.Length</td>
+<td align="right">150</td>
+<td align="right">-1</td>
+<td align="right">50.00</td>
+<td align="right">2.45</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Width</td>
+<td align="right">150</td>
+<td align="right">-1</td>
+<td align="right">50.00</td>
+<td align="right">0.80</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Sepal.Length</td>
+<td align="right">150</td>
+<td align="right">-1</td>
+<td align="right">34.16</td>
+<td align="right">5.45</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">Sepal.Width</td>
+<td align="right">150</td>
+<td align="right">1</td>
+<td align="right">19.04</td>
+<td align="right">3.35</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Petal.Width</td>
+<td align="right">0</td>
+<td align="right">-1</td>
+<td align="right">1.00</td>
+<td align="right">0.80</td>
+<td align="right">1.00</td>
+</tr>
+<tr class="even">
+<td align="left">Sepal.Length</td>
+<td align="right">0</td>
+<td align="right">-1</td>
+<td align="right">0.92</td>
+<td align="right">5.45</td>
+<td align="right">0.76</td>
+</tr>
+<tr class="odd">
+<td align="left">Sepal.Width</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.83</td>
+<td align="right">3.35</td>
+<td align="right">0.50</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Width</td>
+<td align="right">100</td>
+<td align="right">-1</td>
+<td align="right">38.97</td>
+<td align="right">1.75</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Petal.Length</td>
+<td align="right">100</td>
+<td align="right">-1</td>
+<td align="right">37.35</td>
+<td align="right">4.75</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">Sepal.Length</td>
+<td align="right">100</td>
+<td align="right">-1</td>
+<td align="right">10.69</td>
+<td align="right">6.15</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Sepal.Width</td>
+<td align="right">100</td>
+<td align="right">-1</td>
+<td align="right">3.56</td>
+<td align="right">2.45</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Length</td>
+<td align="right">0</td>
+<td align="right">-1</td>
+<td align="right">0.91</td>
+<td align="right">4.75</td>
+<td align="right">0.80</td>
+</tr>
+<tr class="odd">
+<td align="left">Sepal.Length</td>
+<td align="right">0</td>
+<td align="right">-1</td>
+<td align="right">0.73</td>
+<td align="right">6.15</td>
+<td align="right">0.41</td>
+</tr>
+<tr class="even">
+<td align="left">Sepal.Width</td>
+<td align="right">0</td>
+<td align="right">-1</td>
+<td align="right">0.67</td>
+<td align="right">2.95</td>
+<td align="right">0.28</td>
+</tr>
+</tbody>
+</table>
+<p>There are quite a few splits here! So let us look at the two most important splits, Petal.Length = 2.5 and Petal.Width = 0.8.</p>
+<div id="where-the-split-happens-with-petallength-2.5" class="section level3">
+<h3>Where the split happens with PetalLength = 2.5</h3>
 <center>
 <img src="/img/PetalLength.gif" alt="Where the split happens with PetalLength = 2.5" />
 </center>
+</div>
+<div id="where-the-splits-occure-when-petalwidth-0.8" class="section level3">
+<h3>Where the splits occure when PetalWidth = 0.8</h3>
 <center>
 <img src="/img/PetalWidth.gif" alt="Where the splits occure when PetalWidth = 0.8" />
 </center>
+</div>
+</div>
+<div id="the-final-pruned-tree" class="section level2">
+<h2>The Final Pruned Tree</h2>
 <pre class="r"><code>rpart.plot(Tree)</code></pre>
-<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Talk about this here</p>
+<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>This is the final tree diagram. You may notice that the tree has been pruned to have only 2 split nodes. Indeed can see that the split for Petal.Width is moved to 1.8 instead of at 0.8 in the final decision tree.</p>
 </div>
 </div>
-<div id="regression-example" class="section level2">
-<h2>Regression Example</h2>
-<div id="splitting-criteria--" class="section level3">
-<h3>Splitting Criteria -</h3>
-<p><span class="math display">\[ f(x) = \sum^{M}_{m=1} c_{m}I(x \in R_{m}) \]</span></p>
-<p><span class="math display">\[ \hat{c}_{m} = ave(y_{i} |c_{i} \in R_{m} ) \]</span></p>
-<p><span class="math display">\[ R_{1}(j,s) = \{X|X \leq s \} \]</span> and <span class="math display">\[R_{2}(j,s) = \{X|X &gt; s \} \]</span></p>
+<div id="example-regression-tree" class="section level1">
+<h1>Example: Regression Tree</h1>
+<p>For this example I will be providing less explanation.</p>
+<div id="splitting-criteria---minimising-the-sum-of-squares" class="section level2">
+<h2>Splitting Criteria - Minimising The Sum Of Squares</h2>
 <p><span class="math display">\[ \min_{j,s} [\min_{c1} \sum_{x_{i} \in R_{1}(j,s)}(y_{i} -c_{1})^2 +  \min_{c2} \sum_{x_{i} \in R_{2}(j,s)}(y_{i} -c_{2})^2 ] \]</span></p>
-<p><span class="math display">\[ \hat{c}_{1} = ave(y_{i} | x_{i} \in R_{1}(j,s)) \]</span> and <span class="math display">\[ \hat{c}_{2} = ave(y_{i} | x_{i} \in R_{2}(j,s)) \]</span></p>
+<p>where</p>
+<p><span class="math display">\[ \hat{c}_{m} = \frac{1}{N_{m}} \sum_{x_{i} \in R_{m}} y_{i} \]</span> The equation calculates, for each variable, the sum of squared errors. The value for <span class="math inline">\(c_{m}\)</span> is simply the average observation value in that region. The algoirthm then finds the smallest sum of squares for that variable and does that for each variable. The algorithm finally compares the champion split from each variable to determine the winner for the overall split to occur. The stopping criteria will once again be a minimum size of terminal nodes to be 5.</p>
 </div>
-<div id="stopping-criteria---min-leaf-size-of-5" class="section level3">
-<h3>Stopping Criteria - Min leaf size of 5</h3>
-</div>
-<div id="pruning-criteria---cost-complexity-criteria" class="section level3">
-<h3>Pruning Criteria - Cost complexity criteria</h3>
-<p><span class="math display">\[ N_{i} = \#\{x_{i} \in R_{m} \} \]</span></p>
-<p><span class="math display">\[ \hat{c}_{m} = \frac{1}{N_{m}} \sum_{x_{i} \in R_{m}} y_{i} \]</span></p>
+<div id="pruning-criteria---cost-complexity-criteria" class="section level2">
+<h2>Pruning Criteria - Cost Complexity Criteria</h2>
+<p>Let:</p>
 <p><span class="math display">\[ Q_{m}(T) = \frac{1}{N_{m}} \sum_{x_{i} \in R_{m}} (y_{i} - \hat{c}_{m})^2 \]</span></p>
-<p>define cost complexity,</p>
+<p>we may then define cost complexity criterion as:</p>
 <p><span class="math display">\[ C_{\alpha}(T) = \sum^{|T|}_{m=1} N_{m}Q_{m}(T) + \alpha|T| \]</span></p>
-<p>The idea is to find for <span class="math inline">\(\alpha\)</span>, the subtree to minimize <span class="math display">\[C_{\alpha}(T) \]</span>. The tuning parameter <span class="math inline">\(\alpha \geq 0\)</span> governs the tradeoff between tree size and its goodness of fit to the data. Large values of <span class="math inline">\(\alpha\)</span> result in smaller trees and conversly for smaller values of <span class="math inline">\(\alpha\)</span>. As the notation suggests, with <span class="math inline">\(\alpha = 0\)</span> the solution is the full tree.</p>
-<p>To adaptive choose <span class="math inline">\(\alpha\)</span> use the weakest link pruning: sucessively collapse the internal node that produces the smallest per-node increase in <span class="math inline">\(\sum_{m} N_{m}Q_{m}(T)\)</span> (root) tree. Estimation of <span class="math inline">\(\alpha\)</span> is achieved by 5-fold or 10-fold cross validation: we choose the value <span class="math inline">\(\hat{\alpha}\)</span> to minimize the cross-validated sum of squares.</p>
+<p>Our goal is to minimise this function. The compromise between tree size and its fit to the data is dictated by <span class="math inline">\(\alpha\)</span>. Smaller values lead to larger trees and larger values lead to more pruning.</p>
+<p>There are processes by which to estimate <span class="math inline">\(\alpha\)</span> but we will not go into that today.</p>
 </div>
-<div id="the-data-usa-arrests" class="section level3">
-<h3>The Data: USA Arrests</h3>
+<div id="the-data-usa-arrests" class="section level2">
+<h2>The Data: USA Arrests</h2>
 <pre class="r"><code>ggplot(data = USArrests, aes(x = Assault, y = UrbanPop)) + 
   geom_point(aes(color=Murder), size = 6, alpha = .5)</code></pre>
-<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>RegressionTree &lt;- rpart(Murder~ Assault + UrbanPop, data=USArrests)
-knitr::kable(RegressionTree$splits)</code></pre>
-<pre class="r"><code>saveGIF(expr = {
-  print(ggplot(data = USArrests, aes(x = Assault, y = UrbanPop)) + 
-  geom_point(aes(color=Murder), size = 6, alpha = .5) +
-  geom_vline(xintercept = 176, colour = &quot;red&quot;))
-  #geom_hline(yintercept = 57.5) +
-  #geom_hline(yintercept = 69) +
-  #geom_vline(xintercept = 104)
-  #geom_hline(yintercept = 58.5) +
-  #geom_hline(yintercept = 51.5) +
-  #geom_hline(yintercept = 66.5) +
-  #geom_vline(xintercept = 243.5) +
-  #geom_vline(xintercept = 195.5)
-  
-  print(ggplot(data = USArrests, aes(x = Assault, y = UrbanPop)) + 
-  geom_point(aes(color=Murder), size = 6, alpha = .5) +
-  geom_vline(xintercept = 176, colour = &quot;black&quot;) + 
-  geom_hline(yintercept = 57.5, colour = &quot;red&quot;))
-  #geom_hline(yintercept = 69) +
-  #geom_vline(xintercept = 104)
-  #geom_hline(yintercept = 58.5) +
-  #geom_hline(yintercept = 51.5) +
-  #geom_hline(yintercept = 66.5) +
-  #geom_vline(xintercept = 243.5) +
-  #geom_vline(xintercept = 195.5)
-  
-  print(ggplot(data = USArrests, aes(x = Assault, y = UrbanPop)) + 
-  geom_point(aes(color=Murder), size = 6, alpha = .5) +
-  geom_vline(xintercept = 176, colour = &quot;black&quot;) + 
-  geom_hline(yintercept = 57.5, colour = &quot;black&quot;) +
-  geom_hline(yintercept = 69, colour = &quot;red&quot;))
-  #geom_vline(xintercept = 104)
-  #geom_hline(yintercept = 58.5) +
-  #geom_hline(yintercept = 51.5) +
-  #geom_hline(yintercept = 66.5) +
-  #geom_vline(xintercept = 243.5) +
-  #geom_vline(xintercept = 195.5)
-  
-  print(ggplot(data = USArrests, aes(x = Assault, y = UrbanPop)) + 
-  geom_point(aes(color=Murder), size = 6, alpha = .5) +
-  geom_vline(xintercept = 176, colour = &quot;black&quot;) + 
-  geom_hline(yintercept = 57.5, colour = &quot;black&quot;) +
-  geom_hline(yintercept = 69, colour = &quot;black&quot;) +
-  geom_vline(xintercept = 104, colour = &quot;red&quot;))
-  #geom_hline(yintercept = 58.5)
-  #geom_hline(yintercept = 51.5) +
-  #geom_hline(yintercept = 66.5) +
-  #geom_vline(xintercept = 243.5) +
-  #geom_vline(xintercept = 195.5)
-  
-
-}, movie.name = &quot;/home/justin/bobsaget4lyfe.github.io/public/img/regression.gif&quot;, im.convert = &quot;convert&quot;)</code></pre>
+kable(RegressionTree$splits, digits = 2, format = &#39;markdown&#39;)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">count</th>
+<th align="right">ncat</th>
+<th align="right">improve</th>
+<th align="right">index</th>
+<th align="right">adj</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Assault</td>
+<td align="right">50</td>
+<td align="right">-1</td>
+<td align="right">0.66</td>
+<td align="right">176.0</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">UrbanPop</td>
+<td align="right">50</td>
+<td align="right">-1</td>
+<td align="right">0.03</td>
+<td align="right">57.5</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">UrbanPop</td>
+<td align="right">0</td>
+<td align="right">-1</td>
+<td align="right">0.62</td>
+<td align="right">69.0</td>
+<td align="right">0.14</td>
+</tr>
+<tr class="even">
+<td align="left">Assault</td>
+<td align="right">28</td>
+<td align="right">-1</td>
+<td align="right">0.35</td>
+<td align="right">104.0</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">UrbanPop</td>
+<td align="right">28</td>
+<td align="right">-1</td>
+<td align="right">0.11</td>
+<td align="right">58.5</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">UrbanPop</td>
+<td align="right">0</td>
+<td align="right">-1</td>
+<td align="right">0.79</td>
+<td align="right">51.5</td>
+<td align="right">0.45</td>
+</tr>
+<tr class="odd">
+<td align="left">UrbanPop</td>
+<td align="right">22</td>
+<td align="right">1</td>
+<td align="right">0.26</td>
+<td align="right">66.5</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">Assault</td>
+<td align="right">22</td>
+<td align="right">-1</td>
+<td align="right">0.04</td>
+<td align="right">243.5</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Assault</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0.64</td>
+<td align="right">195.5</td>
+<td align="right">0.11</td>
+</tr>
+</tbody>
+</table>
+<div id="the-first-4-splits" class="section level3">
+<h3>The First 4 Splits</h3>
 <center>
 <img src="/img/regression.gif" alt="gif" />
 </center>
 </div>
-<div id="the-constructed-tree" class="section level3">
-<h3>The Constructed Tree</h3>
+</div>
+<div id="the-constructed-tree" class="section level2">
+<h2>The Constructed Tree</h2>
 <pre class="r"><code>rpart.plot(RegressionTree)</code></pre>
-<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/2018-01-22-decisioin-trees_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="summary" class="section level2">
-<h2>Summary</h2>
+<div id="summary" class="section level1">
+<h1>Summary</h1>
 <p>Next up will be a post on Random Forests. How trees are implemented in the real world.</p>
 </div>
 <div id="further-reading" class="section level1">
@@ -772,6 +874,8 @@ knitr::kable(RegressionTree$splits)</code></pre>
   <a class="btn btn-primary btn-outline" href="/tags/tutorial">Tutorial</a>
   
   <a class="btn btn-primary btn-outline" href="/tags/decision-trees">Decision Trees</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/r">R</a>
   
 </div>
 
