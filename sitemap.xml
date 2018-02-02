@@ -77,7 +77,7 @@
     
     <url>
     
-      <loc>/tags/data-analysis/</loc>
+      <loc>/categories/data-analysis/</loc>
       <lastmod>2018-01-31T21:13:14-05:00</lastmod>
       <priority>0</priority>
     </url>
@@ -87,7 +87,7 @@
     
     <url>
     
-      <loc>/categories/data-analysis/</loc>
+      <loc>/tags/data-analysis/</loc>
       <lastmod>2018-01-31T21:13:14-05:00</lastmod>
       <priority>0</priority>
     </url>
@@ -107,7 +107,7 @@
     
     <url>
     
-      <loc>/tags/deep-learning/</loc>
+      <loc>/categories/deep-learning/</loc>
       <lastmod>2018-02-02T21:13:14-05:00</lastmod>
       <priority>0</priority>
     </url>
@@ -117,7 +117,7 @@
     
     <url>
     
-      <loc>/categories/deep-learning/</loc>
+      <loc>/tags/deep-learning/</loc>
       <lastmod>2018-02-02T21:13:14-05:00</lastmod>
       <priority>0</priority>
     </url>
