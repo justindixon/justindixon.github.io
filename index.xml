@@ -11,6 +11,195 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>XOR Deep Learning Example</title>
+      <link>/post/2018-02-02-xor-deep-learning/</link>
+      <pubDate>Fri, 02 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-02-02-xor-deep-learning/</guid>
+      <description>&lt;div id=&#34;the-problem&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;The Problem&lt;/h1&gt;
+&lt;p&gt;OpenAI recently released some open research questions. As a beginner in AI I decided to tackle the begineer ‘Warmups’ they have offered. You can view their blog post &lt;a href=&#34;https://blog.openai.com/requests-for-research-2/&#34;&gt;here&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⭐ Train an LSTM to solve the XOR problem: that is, given a sequence of bits, determine its parity. The LSTM should consume the sequence, one bit at a time, and then output the correct answer at the sequence’s end. Test the two approaches below&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Generate a dataset of random 100,000 binary strings of length 50. Train the LSTM; what performance do you get?&lt;/li&gt;
+&lt;li&gt;Generate a dataset of random 100,000 binary strings, where the length of each string is independently and randomly chosen between 1 and 50. Train the LSTM. Does it succeed? What explains the difference?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-xor-function&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;The XOR Function&lt;/h1&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;Input&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Input 2&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Output&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;problem-1-100000-binary-strings-of-length-50&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Problem 1: 100,000 Binary Strings Of Length 50&lt;/h1&gt;
+&lt;p&gt;The code for solving this problem is thanks to &lt;a href=&#34;https://github.com/christopher5106/grid-1D-LSTM-theano/blob/master/main.py&#34;&gt;christopher5106&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;setup&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Setup&lt;/h2&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;
+&amp;#39;&amp;#39;&amp;#39;
+Trains a 1D Grid LSTM network to learn XOR answers.
+&amp;#39;&amp;#39;&amp;#39;
+
+from __future__ import print_function
+import numpy as np
+import theano
+import theano.tensor as T
+import lasagne
+
+#Lasagne Seed for Reproducibility
+lasagne.random.set_rng(np.random.RandomState(1))
+
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument(&amp;#39;--iterations&amp;#39;, type=int, default=100000, help=&amp;#39;Number of iterations&amp;#39;)
+parser.add_argument(&amp;#39;--bits&amp;#39;, type=int, default=50, help=&amp;#39;Number of bits in the input strings&amp;#39;)
+parser.add_argument(&amp;#39;--hidden&amp;#39;, type=int, default=2, help=&amp;#39;Number of units in the two hidden (LSTM) layers&amp;#39;)
+parser.add_argument(&amp;#39;--learning_rate&amp;#39;, type=float, default=0.5, help=&amp;#39;Optimization learning rate&amp;#39;)
+#parser.add_argument(&amp;#39;--grad_clip&amp;#39;, type=int, default=100, help=&amp;#39;All gradients above this will be clipped&amp;#39;)
+parser.add_argument(&amp;#39;--print_freq&amp;#39;, type=int, default=500, help=&amp;#39;How often should we check the output?&amp;#39;)
+parser.add_argument(&amp;#39;--batch_size&amp;#39;, type=int, default=1, help=&amp;#39;Batch size&amp;#39;)
+parser.add_argument(&amp;#39;--layers&amp;#39;, type=int, default=2, help=&amp;#39;Number of layers&amp;#39;)
+args = parser.parse_args()
+
+print(&amp;quot;Parameters:&amp;quot;)
+print(args)
+args.print_batch_freq = args.print_freq / args.batch_size + 1&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;random-string-generator&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Random String Generator&lt;/h2&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;
+def gen_data(bits=args.bits, batch_size = args.batch_size):
+    x = np.random.randint(2, size=(batch_size,bits))
+    y = x.sum(axis=1) % 2
+    return x, y&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;network&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Network&lt;/h1&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;
+print(&amp;quot;Building network ...&amp;quot;)
+
+l_in = lasagne.layers.InputLayer(shape=(None,1))
+l_in_zero = lasagne.layers.InputLayer(shape=(None, args.layers, 1))
+l_lin = lasagne.layers.DenseLayer(l_in, num_units = args.hidden, nonlinearity = None)
+
+l_forward = lasagne.layers.LSTMLayer(
+   l_in_zero, args.hidden,
+    nonlinearity=lasagne.nonlinearities.tanh, hid_init = l_lin, only_return_final=True)
+
+l_lin_out = lasagne.layers.DenseLayer(l_forward, num_units = 2, nonlinearity = None)
+l_out = lasagne.layers.DenseLayer(l_lin_out, num_units=2, nonlinearity=lasagne.nonlinearities.softmax)
+
+target_values = T.ivector(&amp;#39;target_output&amp;#39;)
+
+network_output = lasagne.layers.get_output(l_out)
+
+cost = T.nnet.categorical_crossentropy(network_output,target_values).mean()
+accuracy = lasagne.objectives.categorical_accuracy(network_output,target_values).mean()
+
+all_params = lasagne.layers.get_all_params(l_out,trainable=True)
+all_params2 = lasagne.layers.get_all_params(l_out,trainable=False)&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;theano-functions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Theano Functions&lt;/h2&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;print(&amp;quot;Computing updates ...&amp;quot;)
+updates = lasagne.updates.adadelta(cost, all_params, args.learning_rate)
+updates2 = lasagne.updates.adagrad(cost, all_params2, args.learning_rate)
+
+print(&amp;quot;Compiling functions ...&amp;quot;)
+train = theano.function([l_in.input_var, l_in_zero.input_var, target_values], cost, updates=updates, allow_input_downcast=True)
+train2 = theano.function([l_in.input_var, l_in_zero.input_var, target_values], cost, updates=updates2, allow_input_downcast=True)
+compute_cost = theano.function([l_in.input_var, l_in_zero.input_var, target_values], cost, allow_input_downcast=True)
+compute_accuracy = theano.function([l_in.input_var, l_in_zero.input_var, target_values],
+    accuracy, allow_input_downcast=True)
+
+probs = theano.function([l_in.input_var, l_in_zero.input_var],network_output,allow_input_downcast=True)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;training&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Training&lt;/h2&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;print(&amp;quot;Training ...&amp;quot;)
+print(&amp;quot;The average loss and accuracy will be printed every {} iterations&amp;quot;.format(args.print_batch_freq*args.batch_size))
+num_batch_print_iter = args.iterations / args.batch_size / args.print_batch_freq + 1
+act_num_batches =  int(num_batch_print_iter * args.print_batch_freq)
+all_cost = np.zeros((act_num_batches))
+all_accuracy = np.zeros((act_num_batches))
+
+for it_out in range(int(num_batch_print_iter)):
+    for it_in in range(int(args.print_batch_freq)):
+        x,y = gen_data()
+        stoplen = (len(x[0])-1)
+        for i in range(0,stoplen):
+            x_zero = np.zeros((args.batch_size,args.layers,1),dtype=&amp;#39;int32&amp;#39;)
+            batch_cost = train2(np.reshape(x[0][i], newshape=(1,1)), x_zero, y)
+        x_zero = np.zeros((args.batch_size, args.layers, 1), dtype=&amp;#39;int32&amp;#39;)
+        batch_iter = int(it_out * args.print_batch_freq + it_in + 1)
+        batch_cost = train(np.reshape(x[0][len(x[0])-1], newshape=(1,1)), x_zero, y)
+        batch_accuracy = compute_accuracy(np.reshape(x[0][len(x[0])-1], newshape=(1,1)), x_zero, y)
+
+        all_cost[batch_iter - 1] = batch_cost
+        all_accuracy[batch_iter - 1] = batch_accuracy
+    start_index = int(it_out * args.print_batch_freq)
+    end_index = int((it_out + 1) * args.print_batch_freq)
+    av_cost = all_cost[start_index:end_index].mean()
+    av_accuracy = all_accuracy[start_index:end_index].mean()
+    np.savetxt(&amp;#39;cost.txt&amp;#39;, all_cost[:end_index], delimiter=&amp;#39;,&amp;#39;)  #average in batch
+    np.savetxt(&amp;#39;accuracy.txt&amp;#39;, all_accuracy[:end_index], delimiter=&amp;#39;,&amp;#39;)
+
+    print(&amp;quot;Iteration {} average loss = {} average accuracy = {}&amp;quot;.format(batch_iter*args.batch_size,
+av_cost,av_accuracy))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;problem-2-100000-binary-strings-of-random-length-150&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Problem 2: 100,000 Binary Strings Of Random Length 1:50&lt;/h1&gt;
+&lt;div id=&#34;code-differences&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Code differences&lt;/h2&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;parser.add_argument(&amp;#39;--hidden&amp;#39;, type=int, default=100, help=&amp;#39;Number of units in the two hidden (LSTM) layers&amp;#39;)
+parser.add_argument(&amp;#39;--layers&amp;#39;, type=int, default=2, help=&amp;#39;Number of layers&amp;#39;)
+args = parser.parse_args()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;python&#34;&gt;&lt;code&gt;def gen_data(bits=args.bits, batch_size = args.batch_size):
+    bitsran = np.random.randint(1, bits)
+    x = np.random.randint(2, size=(batch_size,bitsran))
+    y = x.sum(axis=1) % 2
+    return x, y&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Decision Trees</title>
       <link>/post/2018-01-22-decisioin-trees/</link>
       <pubDate>Wed, 31 Jan 2018 21:13:14 -0500</pubDate>
