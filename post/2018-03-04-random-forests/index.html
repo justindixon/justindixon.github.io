@@ -17,11 +17,12 @@
       
     
   
-  <meta name="description" content="The Problem OpenAI recently released some open research questions. As a beginner in AI I decided to tackle the begineer ‘Warmups’ they have offered. You can view their blog post here:
- ⭐ Train an LSTM to solve the XOR problem: that is, given a sequence of bits, determine its parity. The LSTM should consume the sequence, one bit at a time, and then output the correct answer at the sequence’s end.">
+  <meta name="description" content="Introduction Following on from the previous post about decision trees let us move on to Random Forests. Let us use the Soybean data from the ‘mlbench’ package. There are 35 features and 683 observations with 16 varieties of Soybean.
+ Why care about Random Forests? Let us look at how our decision trees predict previous unseen data. First we will load the data in:
+library(mlbench) library(caret) data(&quot;BreastCancer&quot;) dim(BreastCancer) Let us now split the data up into a training and test data set.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/post/2018-02-02-xor-deep-learning/">
+  <link rel="alternate" hreflang="en-us" href="/post/2018-03-04-random-forests/">
 
   
 
@@ -83,7 +84,7 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/post/2018-02-02-xor-deep-learning/">
+  <link rel="canonical" href="/post/2018-03-04-random-forests/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -91,20 +92,21 @@
   <meta property="twitter:creator" content="@JustinTheDixon">
   
   <meta property="og:site_name" content="Justin Dixon">
-  <meta property="og:url" content="/post/2018-02-02-xor-deep-learning/">
-  <meta property="og:title" content="XOR Deep Learning Example | Justin Dixon">
-  <meta property="og:description" content="The Problem OpenAI recently released some open research questions. As a beginner in AI I decided to tackle the begineer ‘Warmups’ they have offered. You can view their blog post here:
- ⭐ Train an LSTM to solve the XOR problem: that is, given a sequence of bits, determine its parity. The LSTM should consume the sequence, one bit at a time, and then output the correct answer at the sequence’s end.">
+  <meta property="og:url" content="/post/2018-03-04-random-forests/">
+  <meta property="og:title" content="Random Forests | Justin Dixon">
+  <meta property="og:description" content="Introduction Following on from the previous post about decision trees let us move on to Random Forests. Let us use the Soybean data from the ‘mlbench’ package. There are 35 features and 683 observations with 16 varieties of Soybean.
+ Why care about Random Forests? Let us look at how our decision trees predict previous unseen data. First we will load the data in:
+library(mlbench) library(caret) data(&quot;BreastCancer&quot;) dim(BreastCancer) Let us now split the data up into a training and test data set.">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2018-02-02T21:13:14-05:00">
+  <meta property="article:published_time" content="2018-01-31T21:13:14-05:00">
   
-  <meta property="article:modified_time" content="2018-02-02T21:13:14-05:00">
-  
-
+  <meta property="article:modified_time" content="2018-01-31T21:13:14-05:00">
   
 
-  <title>XOR Deep Learning Example | Justin Dixon</title>
+  
+
+  <title>Random Forests | Justin Dixon</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
@@ -244,7 +246,7 @@
 
 
   <div class="article-container">
-    <h1 itemprop="name">XOR Deep Learning Example</h1>
+    <h1 itemprop="name">Random Forests</h1>
 
     
 
@@ -252,8 +254,8 @@
 
   <span class="article-date">
     
-    <time datetime="2018-02-02 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
-      Feb 2, 2018
+    <time datetime="2018-01-31 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
+      Jan 31, 2018
     </time>
   </span>
   <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
@@ -270,7 +272,7 @@
   
   
   <span class="middot-divider"></span>
-  <a href="/post/2018-02-02-xor-deep-learning/#disqus_thread"></a>
+  <a href="/post/2018-03-04-random-forests/#disqus_thread"></a>
   
 
   
@@ -280,7 +282,7 @@
   <span class="article-categories">
     <i class="fa fa-folder"></i>
     
-    <a href="/categories/deep-learning">Deep Learning</a
+    <a href="/categories/data-analysis">Data Analysis</a
     >
     
   </span>
@@ -293,35 +295,35 @@
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=XOR%20Deep%20Learning%20Example&amp;url=%2fpost%2f2018-02-02-xor-deep-learning%2f"
+         href="https://twitter.com/intent/tweet?text=Random%20Forests&amp;url=%2fpost%2f2018-03-04-random-forests%2f"
          target="_blank" rel="noopener">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2018-02-02-xor-deep-learning%2f"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2018-03-04-random-forests%2f"
          target="_blank" rel="noopener">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2018-02-02-xor-deep-learning%2f&amp;title=XOR%20Deep%20Learning%20Example"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2018-03-04-random-forests%2f&amp;title=Random%20Forests"
          target="_blank" rel="noopener">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2018-02-02-xor-deep-learning%2f&amp;title=XOR%20Deep%20Learning%20Example"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2018-03-04-random-forests%2f&amp;title=Random%20Forests"
          target="_blank" rel="noopener">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=XOR%20Deep%20Learning%20Example&amp;body=%2fpost%2f2018-02-02-xor-deep-learning%2f">
+         href="mailto:?subject=Random%20Forests&amp;body=%2fpost%2f2018-03-04-random-forests%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -335,185 +337,192 @@
 
 
     <div class="article-style" itemprop="articleBody">
-      <div id="the-problem" class="section level1">
-<h1>The Problem</h1>
-<p>OpenAI recently released some open research questions. As a beginner in AI I decided to tackle the begineer ‘Warmups’ they have offered. You can view their blog post <a href="https://blog.openai.com/requests-for-research-2/">here</a>:</p>
-<blockquote>
-<p>⭐ Train an LSTM to solve the XOR problem: that is, given a sequence of bits, determine its parity. The LSTM should consume the sequence, one bit at a time, and then output the correct answer at the sequence’s end. Test the two approaches below</p>
-<ul>
-<li>Generate a dataset of random 100,000 binary strings of length 50. Train the LSTM; what performance do you get?</li>
-<li>Generate a dataset of random 100,000 binary strings, where the length of each string is independently and randomly chosen between 1 and 50. Train the LSTM. Does it succeed? What explains the difference?</li>
-</ul>
-</blockquote>
+      <div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Following on from the previous post about decision trees let us move on to Random Forests. Let us use the Soybean data from the ‘mlbench’ package. There are 35 features and 683 observations with 16 varieties of Soybean.</p>
 </div>
-<div id="the-xor-function" class="section level1">
-<h1>The XOR Function</h1>
+<div id="why-care-about-random-forests" class="section level1">
+<h1>Why care about Random Forests?</h1>
+<p>Let us look at how our decision trees predict previous unseen data. First we will load the data in:</p>
+<pre class="r"><code>library(mlbench)
+library(caret)
+data(&quot;BreastCancer&quot;)
+dim(BreastCancer)</code></pre>
+<p>Let us now split the data up into a training and test data set.</p>
+<pre class="r"><code>BreastCancer &lt;- na.omit(BreastCancer)
+BreastCancer$Id &lt;- as.factor(BreastCancer$Id)
+BreastCancer &lt;- subset(BreastCancer, select = -Id)
+index &lt;- createDataPartition(y = BreastCancer$Class, times = 1, p = 0.75, list=FALSE)
+train0 &lt;- BreastCancer[index,]
+test0 &lt;- BreastCancer[-index,]</code></pre>
+<p>We can now train a decision tree like we did in the previous tutorial and see how the model did predicting values of the test set.</p>
+<pre class="r"><code>Tree &lt;- caret::train(Class ~., data = train0, method = &#39;rpart&#39;)
+#Tree &lt;- rpart(Class ~., data = train0)
+results &lt;- caret::predict.train(Tree, newdata = test0)
+hello &lt;- caret::confusionMatrix(results, test0$Class)
+overall &lt;- hello$overall</code></pre>
+<pre class="r"><code>kable(t(overall), digits = 3, format=&#39;markdown&#39;)</code></pre>
 <table>
+<colgroup>
+<col width="10%" />
+<col width="7%" />
+<col width="16%" />
+<col width="16%" />
+<col width="15%" />
+<col width="17%" />
+<col width="16%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th>Input</th>
-<th align="center">Input 2</th>
-<th align="right">Output</th>
+<th align="right">Accuracy</th>
+<th align="right">Kappa</th>
+<th align="right">AccuracyLower</th>
+<th align="right">AccuracyUpper</th>
+<th align="right">AccuracyNull</th>
+<th align="right">AccuracyPValue</th>
+<th align="right">McnemarPValue</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>0</td>
-<td align="center">0</td>
+<td align="right">0.941</td>
+<td align="right">0.871</td>
+<td align="right">0.894</td>
+<td align="right">0.971</td>
+<td align="right">0.653</td>
 <td align="right">0</td>
-</tr>
-<tr class="even">
-<td>0</td>
-<td align="center">1</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>1</td>
-<td align="center">0</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td align="center">1</td>
-<td align="right">0</td>
+<td align="right">0.752</td>
 </tr>
 </tbody>
 </table>
+<pre class="r"><code>print(knitr::kable(hello$table))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">benign</th>
+<th align="right">malignant</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">benign</td>
+<td align="right">105</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">malignant</td>
+<td align="right">6</td>
+<td align="right">55</td>
+</tr>
+</tbody>
+</table>
+<p>That is a pretty good model but lets see if we can improve it. Decision trees are know to have lower bias and this equates to a higher variance. That is decision trees <em>overfit</em> the training data. Random forests allow us to overcome this issue.</p>
+<pre class="r"><code>RF &lt;- caret::train(Class ~ ., data=train0, method = &#39;rf&#39;, ntree= 300)
+results &lt;- caret::predict.train(RF, newdata = test0)
+hello1 &lt;- caret::confusionMatrix(results, test0$Class)
+overall1 &lt;- hello$overall
+print(knitr::kable(t(overall1), digits = 3))</code></pre>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="7%" />
+<col width="16%" />
+<col width="16%" />
+<col width="15%" />
+<col width="17%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Accuracy</th>
+<th align="right">Kappa</th>
+<th align="right">AccuracyLower</th>
+<th align="right">AccuracyUpper</th>
+<th align="right">AccuracyNull</th>
+<th align="right">AccuracyPValue</th>
+<th align="right">McnemarPValue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0.965</td>
+<td align="right">0.923</td>
+<td align="right">0.925</td>
+<td align="right">0.987</td>
+<td align="right">0.653</td>
+<td align="right">0</td>
+<td align="right">0.683</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>print(knitr::kable(hello1$table))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">benign</th>
+<th align="right">malignant</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">benign</td>
+<td align="right">107</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">malignant</td>
+<td align="right">4</td>
+<td align="right">57</td>
+</tr>
+</tbody>
+</table>
+<p>See, we achieved a slightly higher accuracy. That means we successfully classified more cancer patients. That is a pretty good thing, well worth using random forests over a single decision tree.</p>
 </div>
-<div id="problem-1-100000-binary-strings-of-length-50" class="section level1">
-<h1>Problem 1: 100,000 Binary Strings Of Length 50</h1>
-<p>The code for solving this problem is thanks to <a href="https://github.com/christopher5106/grid-1D-LSTM-theano/blob/master/main.py">christopher5106</a></p>
-<div id="setup" class="section level2">
-<h2>Setup</h2>
-<pre class="python"><code>
-&#39;&#39;&#39;
-Trains a 1D Grid LSTM network to learn XOR answers.
-&#39;&#39;&#39;
-
-from __future__ import print_function
-import numpy as np
-import theano
-import theano.tensor as T
-import lasagne
-
-#Lasagne Seed for Reproducibility
-lasagne.random.set_rng(np.random.RandomState(1))
-
-import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument(&#39;--iterations&#39;, type=int, default=100000, help=&#39;Number of iterations&#39;)
-parser.add_argument(&#39;--bits&#39;, type=int, default=50, help=&#39;Number of bits in the input strings&#39;)
-parser.add_argument(&#39;--hidden&#39;, type=int, default=2, help=&#39;Number of units in the two hidden (LSTM) layers&#39;)
-parser.add_argument(&#39;--learning_rate&#39;, type=float, default=0.5, help=&#39;Optimization learning rate&#39;)
-#parser.add_argument(&#39;--grad_clip&#39;, type=int, default=100, help=&#39;All gradients above this will be clipped&#39;)
-parser.add_argument(&#39;--print_freq&#39;, type=int, default=500, help=&#39;How often should we check the output?&#39;)
-parser.add_argument(&#39;--batch_size&#39;, type=int, default=1, help=&#39;Batch size&#39;)
-parser.add_argument(&#39;--layers&#39;, type=int, default=2, help=&#39;Number of layers&#39;)
-args = parser.parse_args()
-
-print(&quot;Parameters:&quot;)
-print(args)
-args.print_batch_freq = args.print_freq / args.batch_size + 1</code></pre>
+<div id="the-algorithm" class="section level1">
+<h1>The Algorithm</h1>
+<pre><code>numberOffTrees &lt;- 300
+NumberOfTreesInForest &lt;- seq(1, numberOffTrees)
+RandomForest &lt;- list()
+for(i in NumberOfTreesInForest) {
+  # Get a sample of the data size N
+  sampleData &lt;- sample(train, size = N)
+  
+  # Grow a tree
+  singleTree &lt;- rpart(Class ~ ., data = train)
+  
+  # Add the tree to the forest
+  RandomForest[i] &lt;- singleTree 
+}</code></pre>
+<div id="regression-prediction" class="section level2">
+<h2>Regression Prediction</h2>
+<pre><code>predictionData
+for(i in NumberOfTreesInForest) {
+  # Make a single prediction
+  singlePrediction &lt;- rpart.predict(ContinuousY ~ ., data = predictionData)
+  
+  # Add the tree to the forest
+  regressionPrediction =  regressionPrediction + singlePrediction
+}
+regressionPrediction &lt;- regressionPrediction / numberOffTrees</code></pre>
 </div>
-<div id="random-string-generator" class="section level2">
-<h2>Random String Generator</h2>
-<pre class="python"><code>
-def gen_data(bits=args.bits, batch_size = args.batch_size):
-    x = np.random.randint(2, size=(batch_size,bits))
-    y = x.sum(axis=1) % 2
-    return x, y</code></pre>
-</div>
-</div>
-<div id="network" class="section level1">
-<h1>Network</h1>
-<pre class="python"><code>
-print(&quot;Building network ...&quot;)
-
-l_in = lasagne.layers.InputLayer(shape=(None,1))
-l_in_zero = lasagne.layers.InputLayer(shape=(None, args.layers, 1))
-l_lin = lasagne.layers.DenseLayer(l_in, num_units = args.hidden, nonlinearity = None)
-
-l_forward = lasagne.layers.LSTMLayer(
-   l_in_zero, args.hidden,
-    nonlinearity=lasagne.nonlinearities.tanh, hid_init = l_lin, only_return_final=True)
-
-l_lin_out = lasagne.layers.DenseLayer(l_forward, num_units = 2, nonlinearity = None)
-l_out = lasagne.layers.DenseLayer(l_lin_out, num_units=2, nonlinearity=lasagne.nonlinearities.softmax)
-
-target_values = T.ivector(&#39;target_output&#39;)
-
-network_output = lasagne.layers.get_output(l_out)
-
-cost = T.nnet.categorical_crossentropy(network_output,target_values).mean()
-accuracy = lasagne.objectives.categorical_accuracy(network_output,target_values).mean()
-
-all_params = lasagne.layers.get_all_params(l_out,trainable=True)
-all_params2 = lasagne.layers.get_all_params(l_out,trainable=False)</code></pre>
-<div id="theano-functions" class="section level2">
-<h2>Theano Functions</h2>
-<pre class="python"><code>print(&quot;Computing updates ...&quot;)
-updates = lasagne.updates.adadelta(cost, all_params, args.learning_rate)
-updates2 = lasagne.updates.adagrad(cost, all_params2, args.learning_rate)
-
-print(&quot;Compiling functions ...&quot;)
-train = theano.function([l_in.input_var, l_in_zero.input_var, target_values], cost, updates=updates, allow_input_downcast=True)
-train2 = theano.function([l_in.input_var, l_in_zero.input_var, target_values], cost, updates=updates2, allow_input_downcast=True)
-compute_cost = theano.function([l_in.input_var, l_in_zero.input_var, target_values], cost, allow_input_downcast=True)
-compute_accuracy = theano.function([l_in.input_var, l_in_zero.input_var, target_values],
-    accuracy, allow_input_downcast=True)
-
-probs = theano.function([l_in.input_var, l_in_zero.input_var],network_output,allow_input_downcast=True)</code></pre>
-</div>
-<div id="training" class="section level2">
-<h2>Training</h2>
-<pre class="python"><code>print(&quot;Training ...&quot;)
-print(&quot;The average loss and accuracy will be printed every {} iterations&quot;.format(args.print_batch_freq*args.batch_size))
-num_batch_print_iter = args.iterations / args.batch_size / args.print_batch_freq + 1
-act_num_batches =  int(num_batch_print_iter * args.print_batch_freq)
-all_cost = np.zeros((act_num_batches))
-all_accuracy = np.zeros((act_num_batches))
-
-for it_out in range(int(num_batch_print_iter)):
-    for it_in in range(int(args.print_batch_freq)):
-        x,y = gen_data()
-        stoplen = (len(x[0])-1)
-        for i in range(0,stoplen):
-            x_zero = np.zeros((args.batch_size,args.layers,1),dtype=&#39;int32&#39;)
-            batch_cost = train2(np.reshape(x[0][i], newshape=(1,1)), x_zero, y)
-        x_zero = np.zeros((args.batch_size, args.layers, 1), dtype=&#39;int32&#39;)
-        batch_iter = int(it_out * args.print_batch_freq + it_in + 1)
-        batch_cost = train(np.reshape(x[0][len(x[0])-1], newshape=(1,1)), x_zero, y)
-        batch_accuracy = compute_accuracy(np.reshape(x[0][len(x[0])-1], newshape=(1,1)), x_zero, y)
-
-        all_cost[batch_iter - 1] = batch_cost
-        all_accuracy[batch_iter - 1] = batch_accuracy
-    start_index = int(it_out * args.print_batch_freq)
-    end_index = int((it_out + 1) * args.print_batch_freq)
-    av_cost = all_cost[start_index:end_index].mean()
-    av_accuracy = all_accuracy[start_index:end_index].mean()
-    np.savetxt(&#39;cost.txt&#39;, all_cost[:end_index], delimiter=&#39;,&#39;)  #average in batch
-    np.savetxt(&#39;accuracy.txt&#39;, all_accuracy[:end_index], delimiter=&#39;,&#39;)
-
-    print(&quot;Iteration {} average loss = {} average accuracy = {}&quot;.format(batch_iter*args.batch_size,
-av_cost,av_accuracy))</code></pre>
-</div>
-</div>
-<div id="problem-2-100000-binary-strings-of-random-length-150" class="section level1">
-<h1>Problem 2: 100,000 Binary Strings Of Random Length 1:50</h1>
-<div id="code-differences" class="section level2">
-<h2>Code differences</h2>
-<pre class="python"><code>parser.add_argument(&#39;--hidden&#39;, type=int, default=100, help=&#39;Number of units in the two hidden (LSTM) layers&#39;)
-parser.add_argument(&#39;--layers&#39;, type=int, default=2, help=&#39;Number of layers&#39;)
-args = parser.parse_args()</code></pre>
-<pre class="python"><code>def gen_data(bits=args.bits, batch_size = args.batch_size):
-    bitsran = np.random.randint(1, bits)
-    x = np.random.randint(2, size=(batch_size,bitsran))
-    y = x.sum(axis=1) % 2
-    return x, y</code></pre>
+<div id="classification-prediction" class="section level2">
+<h2>Classification Prediction</h2>
+<pre><code>predictionData
+for(i in NumberOfTreesInForest) {
+  # Make a single prediction
+  singlePrediction &lt;- rpart.predict(Class ~ ., data = predictionData)
+  
+  # Add the tree to the forest
+  classificationPrediction[i] =  singlePrediction
+}
+max(table(classificationPrediction))</code></pre>
 </div>
 </div>
-<div id="conclusion" class="section level1">
-<h1>Conclusion</h1>
+<div id="the-benefits" class="section level1">
+<h1>The benefits</h1>
+<p>The MAJOR benefit of random forests are that they are easy to implement and require little tinkering. Many ML models require tuning parameters whilst Random Forests are about as close to a working model out of the box as you can get.</p>
 </div>
 
     </div>
@@ -523,11 +532,13 @@ args = parser.parse_args()</code></pre>
 
 <div class="article-tags">
   
-  <a class="btn btn-primary btn-outline" href="/tags/deep-learning">Deep Learning</a>
+  <a class="btn btn-primary btn-outline" href="/tags/data-analysis">Data Analysis</a>
   
   <a class="btn btn-primary btn-outline" href="/tags/tutorial">Tutorial</a>
   
-  <a class="btn btn-primary btn-outline" href="/tags/python">Python</a>
+  <a class="btn btn-primary btn-outline" href="/tags/random-forests">Random Forests</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/r">R</a>
   
 </div>
 
@@ -542,8 +553,6 @@ args = parser.parse_args()</code></pre>
       <ul>
         
         <li><a href="/post/2018-01-22-decisioin-trees/">Decision Trees</a></li>
-        
-        <li><a href="/post/2018-03-04-random-forests/">Random Forests</a></li>
         
       </ul>
     </div>

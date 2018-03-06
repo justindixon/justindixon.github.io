@@ -11,6 +11,24 @@
     <atom:link href="/post/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Contest Theory</title>
+      <link>/post/2018-02-28-contest-theory/</link>
+      <pubDate>Wed, 28 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-02-28-contest-theory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Discouragement Effect</title>
+      <link>/post/2018-03-06-discouragement-effect/</link>
+      <pubDate>Wed, 28 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-03-06-discouragement-effect/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>XOR Deep Learning Example</title>
       <link>/post/2018-02-02-xor-deep-learning/</link>
       <pubDate>Fri, 02 Feb 2018 21:13:14 -0500</pubDate>
@@ -730,6 +748,202 @@ kable(RegressionTree$splits, digits = 2, format = &amp;#39;markdown&amp;#39;)&lt
 &lt;p&gt;Friedman, Jerome, Trevor Hastie, and Robert Tibshirani. 2001. &lt;em&gt;The Elements of Statistical Learning&lt;/em&gt;. Vol. 1. Springer series in statistics New York.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Random Forests</title>
+      <link>/post/2018-03-04-random-forests/</link>
+      <pubDate>Wed, 31 Jan 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-03-04-random-forests/</guid>
+      <description>&lt;div id=&#34;introduction&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;Following on from the previous post about decision trees let us move on to Random Forests. Let us use the Soybean data from the ‘mlbench’ package. There are 35 features and 683 observations with 16 varieties of Soybean.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;why-care-about-random-forests&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Why care about Random Forests?&lt;/h1&gt;
+&lt;p&gt;Let us look at how our decision trees predict previous unseen data. First we will load the data in:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mlbench)
+library(caret)
+data(&amp;quot;BreastCancer&amp;quot;)
+dim(BreastCancer)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let us now split the data up into a training and test data set.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;BreastCancer &amp;lt;- na.omit(BreastCancer)
+BreastCancer$Id &amp;lt;- as.factor(BreastCancer$Id)
+BreastCancer &amp;lt;- subset(BreastCancer, select = -Id)
+index &amp;lt;- createDataPartition(y = BreastCancer$Class, times = 1, p = 0.75, list=FALSE)
+train0 &amp;lt;- BreastCancer[index,]
+test0 &amp;lt;- BreastCancer[-index,]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can now train a decision tree like we did in the previous tutorial and see how the model did predicting values of the test set.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Tree &amp;lt;- caret::train(Class ~., data = train0, method = &amp;#39;rpart&amp;#39;)
+#Tree &amp;lt;- rpart(Class ~., data = train0)
+results &amp;lt;- caret::predict.train(Tree, newdata = test0)
+hello &amp;lt;- caret::confusionMatrix(results, test0$Class)
+overall &amp;lt;- hello$overall&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;kable(t(overall), digits = 3, format=&amp;#39;markdown&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;10%&#34; /&gt;
+&lt;col width=&#34;7%&#34; /&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;col width=&#34;15%&#34; /&gt;
+&lt;col width=&#34;17%&#34; /&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;right&#34;&gt;Accuracy&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Kappa&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;AccuracyLower&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;AccuracyUpper&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;AccuracyNull&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;AccuracyPValue&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;McnemarPValue&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;0.941&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.871&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.894&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.971&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.653&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.752&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;print(knitr::kable(hello$table))&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;benign&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;malignant&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;benign&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;105&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;malignant&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;55&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;That is a pretty good model but lets see if we can improve it. Decision trees are know to have lower bias and this equates to a higher variance. That is decision trees &lt;em&gt;overfit&lt;/em&gt; the training data. Random forests allow us to overcome this issue.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;RF &amp;lt;- caret::train(Class ~ ., data=train0, method = &amp;#39;rf&amp;#39;, ntree= 300)
+results &amp;lt;- caret::predict.train(RF, newdata = test0)
+hello1 &amp;lt;- caret::confusionMatrix(results, test0$Class)
+overall1 &amp;lt;- hello$overall
+print(knitr::kable(t(overall1), digits = 3))&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;10%&#34; /&gt;
+&lt;col width=&#34;7%&#34; /&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;col width=&#34;15%&#34; /&gt;
+&lt;col width=&#34;17%&#34; /&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;right&#34;&gt;Accuracy&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Kappa&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;AccuracyLower&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;AccuracyUpper&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;AccuracyNull&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;AccuracyPValue&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;McnemarPValue&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;0.965&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.923&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.925&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.987&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.653&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.683&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;print(knitr::kable(hello1$table))&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;benign&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;malignant&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;benign&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;107&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;malignant&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;57&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;See, we achieved a slightly higher accuracy. That means we successfully classified more cancer patients. That is a pretty good thing, well worth using random forests over a single decision tree.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-algorithm&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;The Algorithm&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;numberOffTrees &amp;lt;- 300
+NumberOfTreesInForest &amp;lt;- seq(1, numberOffTrees)
+RandomForest &amp;lt;- list()
+for(i in NumberOfTreesInForest) {
+  # Get a sample of the data size N
+  sampleData &amp;lt;- sample(train, size = N)
+  
+  # Grow a tree
+  singleTree &amp;lt;- rpart(Class ~ ., data = train)
+  
+  # Add the tree to the forest
+  RandomForest[i] &amp;lt;- singleTree 
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;regression-prediction&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Regression Prediction&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;predictionData
+for(i in NumberOfTreesInForest) {
+  # Make a single prediction
+  singlePrediction &amp;lt;- rpart.predict(ContinuousY ~ ., data = predictionData)
+  
+  # Add the tree to the forest
+  regressionPrediction =  regressionPrediction + singlePrediction
+}
+regressionPrediction &amp;lt;- regressionPrediction / numberOffTrees&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;classification-prediction&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Classification Prediction&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;predictionData
+for(i in NumberOfTreesInForest) {
+  # Make a single prediction
+  singlePrediction &amp;lt;- rpart.predict(Class ~ ., data = predictionData)
+  
+  # Add the tree to the forest
+  classificationPrediction[i] =  singlePrediction
+}
+max(table(classificationPrediction))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-benefits&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;The benefits&lt;/h1&gt;
+&lt;p&gt;The MAJOR benefit of random forests are that they are easy to implement and require little tinkering. Many ML models require tuning parameters whilst Random Forests are about as close to a working model out of the box as you can get.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
