@@ -17,11 +17,11 @@
       
     
   
-  <meta name="description" content="The Problem OpenAI recently released some open research questions. As a beginner in AI I decided to tackle the begineer ‘Warmups’ they have offered. You can view their blog post here:
- ⭐ Train an LSTM to solve the XOR problem: that is, given a sequence of bits, determine its parity. The LSTM should consume the sequence, one bit at a time, and then output the correct answer at the sequence’s end.">
+  <meta name="description" content="Introduction This is going to be part of series where I illustrate examples and questions from the brilliant book by Sutton and Barto Sutton and Barto (1998). You can download the pdf version of the newly updated book online, just google it. I am planning on going through each chapter and illustrating 1 or 2 examples from each chapter.
+ MultiArmed Bandits What on earth is a mutliarmed bandit? It might be easier to think of it as which pokie you choose to play on down at the local.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/post/2018-02-02-xor-deep-learning/">
+  <link rel="alternate" hreflang="en-us" href="/post/2018-03-10-multiarmed-bandits/">
 
   
 
@@ -83,7 +83,7 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/post/2018-02-02-xor-deep-learning/">
+  <link rel="canonical" href="/post/2018-03-10-multiarmed-bandits/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -91,20 +91,20 @@
   <meta property="twitter:creator" content="@JustinTheDixon">
   
   <meta property="og:site_name" content="Justin Dixon">
-  <meta property="og:url" content="/post/2018-02-02-xor-deep-learning/">
-  <meta property="og:title" content="XOR Deep Learning Example | Justin Dixon">
-  <meta property="og:description" content="The Problem OpenAI recently released some open research questions. As a beginner in AI I decided to tackle the begineer ‘Warmups’ they have offered. You can view their blog post here:
- ⭐ Train an LSTM to solve the XOR problem: that is, given a sequence of bits, determine its parity. The LSTM should consume the sequence, one bit at a time, and then output the correct answer at the sequence’s end.">
+  <meta property="og:url" content="/post/2018-03-10-multiarmed-bandits/">
+  <meta property="og:title" content="Multiarmed Bandits: Chapter 1 IRL | Justin Dixon">
+  <meta property="og:description" content="Introduction This is going to be part of series where I illustrate examples and questions from the brilliant book by Sutton and Barto Sutton and Barto (1998). You can download the pdf version of the newly updated book online, just google it. I am planning on going through each chapter and illustrating 1 or 2 examples from each chapter.
+ MultiArmed Bandits What on earth is a mutliarmed bandit? It might be easier to think of it as which pokie you choose to play on down at the local.">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2018-02-02T21:13:14-05:00">
+  <meta property="article:published_time" content="2018-02-10T21:13:14-05:00">
   
-  <meta property="article:modified_time" content="2018-02-02T21:13:14-05:00">
-  
-
+  <meta property="article:modified_time" content="2018-02-10T21:13:14-05:00">
   
 
-  <title>XOR Deep Learning Example | Justin Dixon</title>
+  
+
+  <title>Multiarmed Bandits: Chapter 1 IRL | Justin Dixon</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
@@ -244,7 +244,7 @@
 
 
   <div class="article-container">
-    <h1 itemprop="name">XOR Deep Learning Example</h1>
+    <h1 itemprop="name">Multiarmed Bandits: Chapter 1 IRL</h1>
 
     
 
@@ -252,8 +252,8 @@
 
   <span class="article-date">
     
-    <time datetime="2018-02-02 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
-      Feb 2, 2018
+    <time datetime="2018-02-10 21:13:14 -0500 -0500" itemprop="datePublished dateModified">
+      Feb 10, 2018
     </time>
   </span>
   <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
@@ -263,14 +263,14 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    3 min read
+    4 min read
   </span>
   
 
   
   
   <span class="middot-divider"></span>
-  <a href="/post/2018-02-02-xor-deep-learning/#disqus_thread"></a>
+  <a href="/post/2018-03-10-multiarmed-bandits/#disqus_thread"></a>
   
 
   
@@ -280,7 +280,7 @@
   <span class="article-categories">
     <i class="fa fa-folder"></i>
     
-    <a href="/categories/deep-learning">Deep Learning</a
+    <a href="/categories/reinforcement-learning">Reinforcement Learning</a
     >
     
   </span>
@@ -293,35 +293,35 @@
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=XOR%20Deep%20Learning%20Example&amp;url=%2fpost%2f2018-02-02-xor-deep-learning%2f"
+         href="https://twitter.com/intent/tweet?text=Multiarmed%20Bandits%3a%20Chapter%201%20IRL&amp;url=%2fpost%2f2018-03-10-multiarmed-bandits%2f"
          target="_blank" rel="noopener">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2018-02-02-xor-deep-learning%2f"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2018-03-10-multiarmed-bandits%2f"
          target="_blank" rel="noopener">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2018-02-02-xor-deep-learning%2f&amp;title=XOR%20Deep%20Learning%20Example"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2018-03-10-multiarmed-bandits%2f&amp;title=Multiarmed%20Bandits%3a%20Chapter%201%20IRL"
          target="_blank" rel="noopener">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2018-02-02-xor-deep-learning%2f&amp;title=XOR%20Deep%20Learning%20Example"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2018-03-10-multiarmed-bandits%2f&amp;title=Multiarmed%20Bandits%3a%20Chapter%201%20IRL"
          target="_blank" rel="noopener">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=XOR%20Deep%20Learning%20Example&amp;body=%2fpost%2f2018-02-02-xor-deep-learning%2f">
+         href="mailto:?subject=Multiarmed%20Bandits%3a%20Chapter%201%20IRL&amp;body=%2fpost%2f2018-03-10-multiarmed-bandits%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -335,185 +335,204 @@
 
 
     <div class="article-style" itemprop="articleBody">
-      <div id="the-problem" class="section level1">
-<h1>The Problem</h1>
-<p>OpenAI recently released some open research questions. As a beginner in AI I decided to tackle the begineer ‘Warmups’ they have offered. You can view their blog post <a href="https://blog.openai.com/requests-for-research-2/">here</a>:</p>
-<blockquote>
-<p>⭐ Train an LSTM to solve the XOR problem: that is, given a sequence of bits, determine its parity. The LSTM should consume the sequence, one bit at a time, and then output the correct answer at the sequence’s end. Test the two approaches below</p>
-<ul>
-<li>Generate a dataset of random 100,000 binary strings of length 50. Train the LSTM; what performance do you get?</li>
-<li>Generate a dataset of random 100,000 binary strings, where the length of each string is independently and randomly chosen between 1 and 50. Train the LSTM. Does it succeed? What explains the difference?</li>
-</ul>
-</blockquote>
+      <div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This is going to be part of series where I illustrate examples and questions from the brilliant book by Sutton and Barto <span class="citation">Sutton and Barto (1998)</span>. You can download the pdf version of the newly updated book online, just google it. I am planning on going through each chapter and illustrating 1 or 2 examples from each chapter.</p>
 </div>
-<div id="the-xor-function" class="section level1">
-<h1>The XOR Function</h1>
-<table>
-<thead>
-<tr class="header">
-<th>Input</th>
-<th align="center">Input 2</th>
-<th align="right">Output</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>0</td>
-<td align="center">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td>0</td>
-<td align="center">1</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>1</td>
-<td align="center">0</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td align="center">1</td>
-<td align="right">0</td>
-</tr>
-</tbody>
-</table>
+<div id="multiarmed-bandits" class="section level1">
+<h1>MultiArmed Bandits</h1>
+<p>What on earth is a mutliarmed bandit? It might be easier to think of it as which pokie you choose to play on down at the local. Say there are 10 pokies at the pub, then you need to decide which machine to game at. But you don’t know which machine will pay at the most so you need to explore and discover where the odds are at.</p>
+<p>Lets as describe a metric; return per dollar spent. That is for every dollar you put in a machine how much do get as a return? (0, 1.5,-.5)</p>
+<p>Let us setup 10 pokie machines with normal distributions but with differing mean returns.</p>
+<pre class="r"><code>rewardMeans &lt;- rnorm(10)
+plot(rewardMeans)</code></pre>
+<p><img src="/post/2018-03-10-Multiarmed-Bandits_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>From our little plot we can see that the best pokie is machine 3.</p>
+<p>Now let us set up our learning problem for our little agent to learn the best machine.</p>
 </div>
-<div id="problem-1-100000-binary-strings-of-length-50" class="section level1">
-<h1>Problem 1: 100,000 Binary Strings Of Length 50</h1>
-<p>The code for solving this problem is thanks to <a href="https://github.com/christopher5106/grid-1D-LSTM-theano/blob/master/main.py">christopher5106</a></p>
-<div id="setup" class="section level2">
-<h2>Setup</h2>
-<pre class="python"><code>
-&#39;&#39;&#39;
-Trains a 1D Grid LSTM network to learn XOR answers.
-&#39;&#39;&#39;
+<div id="the-algorithm" class="section level1">
+<h1>The algorithm</h1>
+<span class="math display">\[\begin{equation}
+\text{for the number of actions k, create:} \\
+\\
+valueFunction(action) = 0 \\
+countFunction(action) = 0 \\
+\\
 
-from __future__ import print_function
-import numpy as np
-import theano
-import theano.tensor as T
-import lasagne
-
-#Lasagne Seed for Reproducibility
-lasagne.random.set_rng(np.random.RandomState(1))
-
-import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument(&#39;--iterations&#39;, type=int, default=100000, help=&#39;Number of iterations&#39;)
-parser.add_argument(&#39;--bits&#39;, type=int, default=50, help=&#39;Number of bits in the input strings&#39;)
-parser.add_argument(&#39;--hidden&#39;, type=int, default=2, help=&#39;Number of units in the two hidden (LSTM) layers&#39;)
-parser.add_argument(&#39;--learning_rate&#39;, type=float, default=0.5, help=&#39;Optimization learning rate&#39;)
-#parser.add_argument(&#39;--grad_clip&#39;, type=int, default=100, help=&#39;All gradients above this will be clipped&#39;)
-parser.add_argument(&#39;--print_freq&#39;, type=int, default=500, help=&#39;How often should we check the output?&#39;)
-parser.add_argument(&#39;--batch_size&#39;, type=int, default=1, help=&#39;Batch size&#39;)
-parser.add_argument(&#39;--layers&#39;, type=int, default=2, help=&#39;Number of layers&#39;)
-args = parser.parse_args()
-
-print(&quot;Parameters:&quot;)
-print(args)
-args.print_batch_freq = args.print_freq / args.batch_size + 1</code></pre>
+Repeat until iteration count is reached: \\\
+action &lt;-
+\begin{cases}
+ \text{The action that maxes the valueFuntion with prob (1 - epsilon)} \\ 
+ \text{A random action with prob epsilon} \\
+\end{cases}\\
+\\
+reward &lt;- bandit(action) \\
+countFunction(action) += 1 \\
+valueFunction(action) += \frac{1}{countFunction(action)}*(reward - valueFunction(action)) \\
+\end{equation}\]</span>
 </div>
-<div id="random-string-generator" class="section level2">
-<h2>Random String Generator</h2>
-<pre class="python"><code>
-def gen_data(bits=args.bits, batch_size = args.batch_size):
-    x = np.random.randint(2, size=(batch_size,bits))
-    y = x.sum(axis=1) % 2
-    return x, y</code></pre>
-</div>
-</div>
-<div id="network" class="section level1">
-<h1>Network</h1>
-<pre class="python"><code>
-print(&quot;Building network ...&quot;)
+<div id="programming-example" class="section level1">
+<h1>Programming Example</h1>
+<pre class="r"><code>averagerewardAverage &lt;- vector()
+averageactions &lt;- vector()
 
-l_in = lasagne.layers.InputLayer(shape=(None,1))
-l_in_zero = lasagne.layers.InputLayer(shape=(None, args.layers, 1))
-l_lin = lasagne.layers.DenseLayer(l_in, num_units = args.hidden, nonlinearity = None)
 
-l_forward = lasagne.layers.LSTMLayer(
-   l_in_zero, args.hidden,
-    nonlinearity=lasagne.nonlinearities.tanh, hid_init = l_lin, only_return_final=True)
+for(w in 1:500) {
+# Setup our functions
+# Number of pokies
+k &lt;- 10
+valueFunction &lt;- vector()
+countFunction &lt;- vector()
 
-l_lin_out = lasagne.layers.DenseLayer(l_forward, num_units = 2, nonlinearity = None)
-l_out = lasagne.layers.DenseLayer(l_lin_out, num_units=2, nonlinearity=lasagne.nonlinearities.softmax)
+for(i in 1:k) {
+  valueFunction[i] &lt;- 0
+  countFunction[i] &lt;- 0
+}
 
-target_values = T.ivector(&#39;target_output&#39;)
+# Number of steps
+T &lt;- 1000
+rewardTotal &lt;- vector()
+rewardAverage &lt;- vector()
+actions &lt;- vector()
+for(x in 1:T) {
+  epsilon &lt;- 0.1
+  if(epsilon &gt; sample(c(0:9), size=1)) {
+    action &lt;- sample(c(1:k), size=1)
+  } else {
+     action &lt;- which(valueFunction==max(valueFunction))[1]
+  }
+  actions[x] &lt;- action
+  # reward &lt;- bandit(action)
+  reward &lt;- rnorm(1, mean=rewardMeans[action])
+  rewardTotal[x] &lt;- reward
+  rewardAverage[x] &lt;- mean(rewardTotal)
+  countFunction[action] &lt;- countFunction[action] +  1
+  valueFunction[action] &lt;- valueFunction[action] + (1 / countFunction[action])*(reward - valueFunction[action])
+}
 
-network_output = lasagne.layers.get_output(l_out)
+averagerewardAverage &lt;- rbind(averagerewardAverage,rewardAverage)
+averageactions &lt;- rbind(averageactions, actions)
+}
 
-cost = T.nnet.categorical_crossentropy(network_output,target_values).mean()
-accuracy = lasagne.objectives.categorical_accuracy(network_output,target_values).mean()
-
-all_params = lasagne.layers.get_all_params(l_out,trainable=True)
-all_params2 = lasagne.layers.get_all_params(l_out,trainable=False)</code></pre>
-<div id="theano-functions" class="section level2">
-<h2>Theano Functions</h2>
-<pre class="python"><code>print(&quot;Computing updates ...&quot;)
-updates = lasagne.updates.adadelta(cost, all_params, args.learning_rate)
-updates2 = lasagne.updates.adagrad(cost, all_params2, args.learning_rate)
-
-print(&quot;Compiling functions ...&quot;)
-train = theano.function([l_in.input_var, l_in_zero.input_var, target_values], cost, updates=updates, allow_input_downcast=True)
-train2 = theano.function([l_in.input_var, l_in_zero.input_var, target_values], cost, updates=updates2, allow_input_downcast=True)
-compute_cost = theano.function([l_in.input_var, l_in_zero.input_var, target_values], cost, allow_input_downcast=True)
-compute_accuracy = theano.function([l_in.input_var, l_in_zero.input_var, target_values],
-    accuracy, allow_input_downcast=True)
-
-probs = theano.function([l_in.input_var, l_in_zero.input_var],network_output,allow_input_downcast=True)</code></pre>
-</div>
-<div id="training" class="section level2">
-<h2>Training</h2>
-<pre class="python"><code>print(&quot;Training ...&quot;)
-print(&quot;The average loss and accuracy will be printed every {} iterations&quot;.format(args.print_batch_freq*args.batch_size))
-num_batch_print_iter = args.iterations / args.batch_size / args.print_batch_freq + 1
-act_num_batches =  int(num_batch_print_iter * args.print_batch_freq)
-all_cost = np.zeros((act_num_batches))
-all_accuracy = np.zeros((act_num_batches))
-
-for it_out in range(int(num_batch_print_iter)):
-    for it_in in range(int(args.print_batch_freq)):
-        x,y = gen_data()
-        stoplen = (len(x[0])-1)
-        for i in range(0,stoplen):
-            x_zero = np.zeros((args.batch_size,args.layers,1),dtype=&#39;int32&#39;)
-            batch_cost = train2(np.reshape(x[0][i], newshape=(1,1)), x_zero, y)
-        x_zero = np.zeros((args.batch_size, args.layers, 1), dtype=&#39;int32&#39;)
-        batch_iter = int(it_out * args.print_batch_freq + it_in + 1)
-        batch_cost = train(np.reshape(x[0][len(x[0])-1], newshape=(1,1)), x_zero, y)
-        batch_accuracy = compute_accuracy(np.reshape(x[0][len(x[0])-1], newshape=(1,1)), x_zero, y)
-
-        all_cost[batch_iter - 1] = batch_cost
-        all_accuracy[batch_iter - 1] = batch_accuracy
-    start_index = int(it_out * args.print_batch_freq)
-    end_index = int((it_out + 1) * args.print_batch_freq)
-    av_cost = all_cost[start_index:end_index].mean()
-    av_accuracy = all_accuracy[start_index:end_index].mean()
-    np.savetxt(&#39;cost.txt&#39;, all_cost[:end_index], delimiter=&#39;,&#39;)  #average in batch
-    np.savetxt(&#39;accuracy.txt&#39;, all_accuracy[:end_index], delimiter=&#39;,&#39;)
-
-    print(&quot;Iteration {} average loss = {} average accuracy = {}&quot;.format(batch_iter*args.batch_size,
-av_cost,av_accuracy))</code></pre>
+averagerewardAverage &lt;- colMeans(averagerewardAverage)
+averageactions &lt;- colMeans(averageactions)</code></pre>
+<div id="let-us-plot-our-results" class="section level2">
+<h2>Let us plot our results</h2>
+<pre class="r"><code>plot(averagerewardAverage)</code></pre>
+<p><img src="/post/2018-03-10-Multiarmed-Bandits_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Now considering our best slot machine has a payout of around 1.5 it seems out model is not that great at finding the best machine. This highlights the huge problem with reinforcement learning. That is it is HARD.</p>
 </div>
 </div>
-<div id="problem-2-100000-binary-strings-of-random-length-150" class="section level1">
-<h1>Problem 2: 100,000 Binary Strings Of Random Length 1:50</h1>
-<div id="code-differences" class="section level2">
-<h2>Code differences</h2>
-<pre class="python"><code>parser.add_argument(&#39;--hidden&#39;, type=int, default=100, help=&#39;Number of units in the two hidden (LSTM) layers&#39;)
-parser.add_argument(&#39;--layers&#39;, type=int, default=2, help=&#39;Number of layers&#39;)
-args = parser.parse_args()</code></pre>
-<pre class="python"><code>def gen_data(bits=args.bits, batch_size = args.batch_size):
-    bitsran = np.random.randint(1, bits)
-    x = np.random.randint(2, size=(batch_size,bitsran))
-    y = x.sum(axis=1) % 2
-    return x, y</code></pre>
+<div id="optimistic-initial-values-with-greedy-epsilon-0" class="section level1">
+<h1>Optimistic Initial values with greedy epsilon = 0</h1>
+<pre class="r"><code>averagerewardAverage &lt;- vector()
+averageactions &lt;- vector()
+
+
+for(w in 1:500) {
+# Setup our functions
+# Number of pokies
+k &lt;- 10
+valueFunction &lt;- vector()
+countFunction &lt;- vector()
+
+for(i in 1:k) {
+  valueFunction[i] &lt;- 10
+  countFunction[i] &lt;- 10
+}
+
+# Number of steps
+T &lt;- 1000
+rewardTotal &lt;- vector()
+rewardAverage &lt;- vector()
+actions &lt;- vector()
+for(x in 1:T) {
+  epsilon &lt;- 0
+  if(epsilon &gt; sample(c(0:9), size=1)) {
+    action &lt;- sample(c(1:k), size=1)
+  } else {
+     action &lt;- which(valueFunction==max(valueFunction))[1]
+  }
+  actions[x] &lt;- action
+  # reward &lt;- bandit(action)
+  reward &lt;- rnorm(1, mean=rewardMeans[action])
+  rewardTotal[x] &lt;- reward
+  rewardAverage[x] &lt;- mean(rewardTotal)
+  countFunction[action] &lt;- countFunction[action] +  1
+  valueFunction[action] &lt;- valueFunction[action] + (1 / countFunction[action])*(reward - valueFunction[action])
+}
+
+averagerewardAverage &lt;- rbind(averagerewardAverage,rewardAverage)
+averageactions &lt;- rbind(averageactions, actions)
+}
+
+averagerewardAverage &lt;- colMeans(averagerewardAverage)
+averageactions &lt;- colMeans(averageactions)</code></pre>
+<div id="let-us-plot-our-results-1" class="section level2">
+<h2>Let us plot our results</h2>
+<pre class="r"><code>plot(averagerewardAverage)</code></pre>
+<p><img src="/post/2018-03-10-Multiarmed-Bandits_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="constant-step-size" class="section level1">
+<h1>Constant Step Size</h1>
+<pre class="r"><code>averagerewardAverage &lt;- vector()
+averageactions &lt;- vector()
+
+
+for(w in 1:500) {
+# Setup our functions
+# Number of pokies
+k &lt;- 10
+valueFunction &lt;- vector()
+countFunction &lt;- vector()
+
+for(i in 1:k) {
+  valueFunction[i] &lt;- 0
+  countFunction[i] &lt;- 0
+}
+
+# Number of steps
+T &lt;- 1000
+rewardTotal &lt;- vector()
+rewardAverage &lt;- vector()
+actions &lt;- vector()
+for(x in 1:T) {
+  epsilon &lt;- 1
+  if(epsilon &gt; sample(c(0:9), size=1)) {
+    action &lt;- sample(c(1:k), size=1)
+  } else {
+     action &lt;- which(valueFunction==max(valueFunction))[1]
+  }
+  actions[x] &lt;- action
+  # reward &lt;- bandit(action)
+  reward &lt;- rnorm(1, mean=rewardMeans[action])
+  rewardTotal[x] &lt;- reward
+  rewardAverage[x] &lt;- mean(rewardTotal)
+  countFunction[action] &lt;- countFunction[action] +  1
+  valueFunction[action] &lt;- valueFunction[action] + 0.05*(reward - valueFunction[action])
+}
+
+averagerewardAverage &lt;- rbind(averagerewardAverage,rewardAverage)
+averageactions &lt;- rbind(averageactions, actions)
+}
+
+averagerewardAverage &lt;- colMeans(averagerewardAverage)
+averageactions &lt;- colMeans(averageactions)</code></pre>
+<div id="let-us-plot-our-results-2" class="section level2">
+<h2>Let us plot our results</h2>
+<pre class="r"><code>plot(averagerewardAverage)</code></pre>
+<p><img src="/post/2018-03-10-Multiarmed-Bandits_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
+<p>Pretty cool. Next post will be on Markov Decision Processes.</p>
+<div id="refs" class="references">
+<div id="ref-sutton1998reinforcement">
+<p>Sutton, Richard S, and Andrew G Barto. 1998. <em>Reinforcement Learning: An Introduction</em>. Vol. 1. 1. MIT press Cambridge.</p>
+</div>
+</div>
 </div>
 
     </div>
@@ -523,11 +542,11 @@ args = parser.parse_args()</code></pre>
 
 <div class="article-tags">
   
-  <a class="btn btn-primary btn-outline" href="/tags/deep-learning">Deep Learning</a>
+  <a class="btn btn-primary btn-outline" href="/tags/multiarmed-bandits">Multiarmed Bandits</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/reinforcement-learning">Reinforcement Learning</a>
   
   <a class="btn btn-primary btn-outline" href="/tags/tutorial">Tutorial</a>
-  
-  <a class="btn btn-primary btn-outline" href="/tags/python">Python</a>
   
 </div>
 
@@ -540,6 +559,8 @@ args = parser.parse_args()</code></pre>
       <div class="hr-light"></div>
       <h3>Related</h3>
       <ul>
+        
+        <li><a href="/post/2018-02-02-xor-deep-learning/">XOR Deep Learning Example</a></li>
         
         <li><a href="/post/2018-03-04-random-forests/">Random Forests</a></li>
         

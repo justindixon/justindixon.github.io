@@ -16,7 +16,37 @@
       <pubDate>Wed, 28 Feb 2018 21:13:14 -0500</pubDate>
       
       <guid>/post/2018-02-28-contest-theory/</guid>
-      <description></description>
+      <description>&lt;div id=&#34;what-is-contest-theory&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;What is Contest Theory?&lt;/h1&gt;
+&lt;p&gt;Contest theory is a tool to describe situation where agents compete with costly efforts to win a scare prize. Quick tips: - agent: economic agent abstraction, examples include workers, sports people etc. - costly efforts: This just means the agent has to make a &lt;em&gt;decision&lt;/em&gt;. Ie they do have infinity effort to try to win. Think of the contest people tennis players. A player cannot give 110%, it is physically impossible. - scare prize: This forces the agents to compete as they both cannot win in the contest.&lt;/p&gt;
+&lt;p&gt;Contest theory deals with various ways contests can be formulated and tried to make predictions on how rational agents would act.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;examples&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Examples&lt;/h1&gt;
+&lt;p&gt;As with many game theorical frameworks many situations can be appropriated. These examples are heavily influenced and borrowed from &lt;span class=&#34;citation&#34;&gt;Konrad (2012)&lt;/span&gt; and I would recommend reading the paper. - &lt;em&gt;R&amp;amp;D Race&lt;/em&gt;: When firms compete against each to win the prize of a patent we can say they are in a contest. Think of pharmaceuticals attempting to find some new cure for a disease. The first firm to discover and patent the discovery wins the prize of the government protected monopoly to sell the drug whilst the other company gets nothing for all their hard work. - &lt;em&gt;Corporate Promotion Ladder&lt;/em&gt;: Executives in large companies are often attempting to gain a promotion. There are obviously limited higher positions available and the executives must decided how hard they wish to work to attempt to win the promotion. - &lt;em&gt;Sports Contest&lt;/em&gt;: Sport contests are perphaps the easiest acticities to conceptually reconcile with contest theory. Think of a tennis match in the final of a grand slam. The winner gains the higher prizepool and the fame. The cost of effort include the physical pain of the match and the possibility of trying to hard leading to injury which would affect future possible earnings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-maths&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;The maths&lt;/h1&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+\pi_{1} = p_{1}(e_{1}, p_{2}) * v - c(e_{1})
+
+\end{equation}\]&lt;/span&gt;
+&lt;p&gt;Here we see that the profit or utility of player 1 (in a 2 player contest) is equal to the probability of them winning (which is dictated by the contest success function) times the prize minus the cost of the players effort.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Further Reading&lt;/h1&gt;
+&lt;p&gt;A must read is the novel &lt;span class=&#34;citation&#34;&gt;Konrad and others (2009)&lt;/span&gt;.&lt;/p&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references&#34;&gt;
+&lt;div id=&#34;ref-konrad2012dynamic&#34;&gt;
+&lt;p&gt;Konrad, Kai A. 2012. “Dynamic Contests and the Discouragement Effect.” &lt;em&gt;Revue d’économie Politique&lt;/em&gt; 122 (2). Dalloz: 233–56.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-konrad2009strategy&#34;&gt;
+&lt;p&gt;Konrad, Kai A, and others. 2009. “Strategy and Dynamics in Contests.” &lt;em&gt;OUP Catalogue&lt;/em&gt;. Oxford University Press.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -25,7 +55,316 @@
       <pubDate>Wed, 28 Feb 2018 21:13:14 -0500</pubDate>
       
       <guid>/post/2018-03-06-discouragement-effect/</guid>
-      <description></description>
+      <description>&lt;div id=&#34;what-is-the-discouragement-effect&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;What is the Discouragement Effect?&lt;/h1&gt;
+&lt;p&gt;The discouragement effect is when the future consequences of winning or losing the current contest leads to decreased effort &lt;span class=&#34;citation&#34;&gt;Konrad (2012)&lt;/span&gt;. This is due the future contest reducing the overall value of winning. Think about a tennis match with 3 sets. If a player loses the first set then to win the entire match they must win 2 sets compared to the other player only needing to win 1 match. Therefore they have a harder path to victory than the other player and have an incentives to reduce their effort.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Example&lt;/h1&gt;
+&lt;p&gt;Now let us work through an example. We will continue with our tennis exposition and place the contest as the final at the Australian Open. To win a player must be the first player to win 3 sets.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+playerPayoff = probabilityOfWinning * (prizeOfWinning - prizeOfLosing) - costOfTrying
+
+\end{equation}\]&lt;/span&gt;
+&lt;p&gt;Remember that the probabilityOfWinning is the output of function called the Contest Success Function with takes both players efforts as inputs and the costOfTrying is the function with the input of the player’s effort. To make this less dry as possible lets say the grand final is between Roger and Nadal and that Roger is winnign 2 sets to 1. This means that if Roger wins the next set we wins the championship but id Nadal wins then both players have 2 sets each and the final set winner decides the total winner.&lt;/p&gt;
+&lt;p&gt;Now if Roger wins he gains the netPrize, which we will give the value of 1. If Nadal wins then both players are tied at 2 sets each. To work out the valuation of being in this state we need to introduce the Tullock model for the CSF.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+porbabilityOfWinning_{Roger} = \frac{effort_{Roger}}{effort_{Roger} + effort_{Nadal}} 
+
+\end{equation}\]&lt;/span&gt;
+&lt;p&gt;Pretty neat huh. Now to simplify let us make the costOfTrying to be unity ie&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+
+costOfTrying = effort
+
+\end{equation}\]&lt;/span&gt;
+&lt;p&gt;Now we have the tools to work out the payoffs for both Roger and Nadal when they are tied at 2 sets each. If either player wins they gain the prize, which we have said is 1.&lt;/p&gt;
+&lt;p&gt;Now we need to solve the optimisation problem.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+\frac{\partial payoffRoger}{\partial effortRoger} = \frac{\partial payoffNadal}{\partial effortNadal}  
+
+\end{equation}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+\frac{effortNadal}{(effortNadal + effortRoger)^2} * 1 - 1 = \frac{effortroger}{(effortNadal + effortRoger)^2} * 1 - 1  
+
+\end{equation}\]&lt;/span&gt;
+&lt;p&gt;Simplifying we achieve &lt;span class=&#34;math inline&#34;&gt;\(effortNadal = effortRoger\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now if we put this back in our original equation&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+payoff = \frac{effort}{2*effort} * 1 - effort
+
+\end{equation}\]&lt;/span&gt;
+&lt;p&gt;Simplify to&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+payoff = \frac{1}{2} * 1 - effort
+
+\end{equation}\]&lt;/span&gt;
+&lt;p&gt;Therefore effort and payoff are equal to 0.25.&lt;/p&gt;
+&lt;p&gt;Now this means that Roger faces winning and gaining 1 or losing and gaining 0.25 and Nadal facing winning to gain 0.25 and losing to gain 0. Therefore the value for winning to Roger is 0.75 and for Nadal it is 0.25. This causes asymmetries in winning valuations.&lt;/p&gt;
+&lt;p&gt;Now lets worked out how hard the players play at 2 sets to 1.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+payoffRoger = \frac{effortRoger}{effortRoger + effortNadal} * 0.75 - effortRoger
+
+\end{equation}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+payoffNadal = \frac{effortNadal}{effortRoger + effortNadal} * 0.25 - effortNadal
+
+\end{equation}\]&lt;/span&gt;
+&lt;p&gt;Now we need to work out:&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+\frac{\partial payoffRoger}{\partial effortRoger} = \frac{\partial payoffNadal}{\partial effortNadal}  
+
+\end{equation}\]&lt;/span&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+\frac{effortNadal}{(effortNadal + effortRoger)^2} * 0.75 - 1 = \frac{effortRoger}{(effortNadal + effortRoger)^2} * 0.25 - 1  
+
+\end{equation}\]&lt;/span&gt;
+&lt;p&gt;so &lt;span class=&#34;math inline&#34;&gt;\(effortNadal * 0.75 = effortRoger * 0.25\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Which simplifies to &lt;span class=&#34;math inline&#34;&gt;\(3*effortNadal = effortRoger\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Now subbing these back into our equations we get&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+\frac{effortNadal}{(effortNadal + 3*effortNadal)^2} * 0.75 = 1
+
+\end{equation}\]&lt;/span&gt;
+&lt;p&gt;This simplifies to give an effortNadal of 0.046875.&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+\frac{effortRoger}{(0.333*effortRoger + effortRoger)^2} * 0.25 = 1
+
+\end{equation}\]&lt;/span&gt;
+&lt;p&gt;This gives an effortRoger of 0.140625 which also satifies out equality given before.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(0.046875 + 0.140625 = 0.1875 &amp;lt; 0.5\)&lt;/span&gt; Therefore our total effort has been reduced in this contest.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Further Reading&lt;/h1&gt;
+&lt;p&gt;Give this one a go &lt;span class=&#34;citation&#34;&gt;Konrad (2012)&lt;/span&gt;.&lt;/p&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references&#34;&gt;
+&lt;div id=&#34;ref-konrad2012dynamic&#34;&gt;
+&lt;p&gt;Konrad, Kai A. 2012. “Dynamic Contests and the Discouragement Effect.” &lt;em&gt;Revue d’économie Politique&lt;/em&gt; 122 (2). Dalloz: 233–56.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Multiarmed Bandits: Chapter 1 IRL</title>
+      <link>/post/2018-03-10-multiarmed-bandits/</link>
+      <pubDate>Sat, 10 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-03-10-multiarmed-bandits/</guid>
+      <description>&lt;div id=&#34;introduction&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;This is going to be part of series where I illustrate examples and questions from the brilliant book by Sutton and Barto &lt;span class=&#34;citation&#34;&gt;Sutton and Barto (1998)&lt;/span&gt;. You can download the pdf version of the newly updated book online, just google it. I am planning on going through each chapter and illustrating 1 or 2 examples from each chapter.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;multiarmed-bandits&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;MultiArmed Bandits&lt;/h1&gt;
+&lt;p&gt;What on earth is a mutliarmed bandit? It might be easier to think of it as which pokie you choose to play on down at the local. Say there are 10 pokies at the pub, then you need to decide which machine to game at. But you don’t know which machine will pay at the most so you need to explore and discover where the odds are at.&lt;/p&gt;
+&lt;p&gt;Lets as describe a metric; return per dollar spent. That is for every dollar you put in a machine how much do get as a return? (0, 1.5,-.5)&lt;/p&gt;
+&lt;p&gt;Let us setup 10 pokie machines with normal distributions but with differing mean returns.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rewardMeans &amp;lt;- rnorm(10)
+plot(rewardMeans)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-03-10-Multiarmed-Bandits_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;From our little plot we can see that the best pokie is machine 3.&lt;/p&gt;
+&lt;p&gt;Now let us set up our learning problem for our little agent to learn the best machine.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-algorithm&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;The algorithm&lt;/h1&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+\text{for the number of actions k, create:} \\
+\\
+valueFunction(action) = 0 \\
+countFunction(action) = 0 \\
+\\
+
+Repeat until iteration count is reached: \\\
+action &amp;lt;-
+\begin{cases}
+ \text{The action that maxes the valueFuntion with prob (1 - epsilon)} \\ 
+ \text{A random action with prob epsilon} \\
+\end{cases}\\
+\\
+reward &amp;lt;- bandit(action) \\
+countFunction(action) += 1 \\
+valueFunction(action) += \frac{1}{countFunction(action)}*(reward - valueFunction(action)) \\
+\end{equation}\]&lt;/span&gt;
+&lt;/div&gt;
+&lt;div id=&#34;programming-example&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Programming Example&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;averagerewardAverage &amp;lt;- vector()
+averageactions &amp;lt;- vector()
+
+
+for(w in 1:500) {
+# Setup our functions
+# Number of pokies
+k &amp;lt;- 10
+valueFunction &amp;lt;- vector()
+countFunction &amp;lt;- vector()
+
+for(i in 1:k) {
+  valueFunction[i] &amp;lt;- 0
+  countFunction[i] &amp;lt;- 0
+}
+
+# Number of steps
+T &amp;lt;- 1000
+rewardTotal &amp;lt;- vector()
+rewardAverage &amp;lt;- vector()
+actions &amp;lt;- vector()
+for(x in 1:T) {
+  epsilon &amp;lt;- 0.1
+  if(epsilon &amp;gt; sample(c(0:9), size=1)) {
+    action &amp;lt;- sample(c(1:k), size=1)
+  } else {
+     action &amp;lt;- which(valueFunction==max(valueFunction))[1]
+  }
+  actions[x] &amp;lt;- action
+  # reward &amp;lt;- bandit(action)
+  reward &amp;lt;- rnorm(1, mean=rewardMeans[action])
+  rewardTotal[x] &amp;lt;- reward
+  rewardAverage[x] &amp;lt;- mean(rewardTotal)
+  countFunction[action] &amp;lt;- countFunction[action] +  1
+  valueFunction[action] &amp;lt;- valueFunction[action] + (1 / countFunction[action])*(reward - valueFunction[action])
+}
+
+averagerewardAverage &amp;lt;- rbind(averagerewardAverage,rewardAverage)
+averageactions &amp;lt;- rbind(averageactions, actions)
+}
+
+averagerewardAverage &amp;lt;- colMeans(averagerewardAverage)
+averageactions &amp;lt;- colMeans(averageactions)&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;let-us-plot-our-results&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Let us plot our results&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(averagerewardAverage)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-03-10-Multiarmed-Bandits_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Now considering our best slot machine has a payout of around 1.5 it seems out model is not that great at finding the best machine. This highlights the huge problem with reinforcement learning. That is it is HARD.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;optimistic-initial-values-with-greedy-epsilon-0&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Optimistic Initial values with greedy epsilon = 0&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;averagerewardAverage &amp;lt;- vector()
+averageactions &amp;lt;- vector()
+
+
+for(w in 1:500) {
+# Setup our functions
+# Number of pokies
+k &amp;lt;- 10
+valueFunction &amp;lt;- vector()
+countFunction &amp;lt;- vector()
+
+for(i in 1:k) {
+  valueFunction[i] &amp;lt;- 10
+  countFunction[i] &amp;lt;- 10
+}
+
+# Number of steps
+T &amp;lt;- 1000
+rewardTotal &amp;lt;- vector()
+rewardAverage &amp;lt;- vector()
+actions &amp;lt;- vector()
+for(x in 1:T) {
+  epsilon &amp;lt;- 0
+  if(epsilon &amp;gt; sample(c(0:9), size=1)) {
+    action &amp;lt;- sample(c(1:k), size=1)
+  } else {
+     action &amp;lt;- which(valueFunction==max(valueFunction))[1]
+  }
+  actions[x] &amp;lt;- action
+  # reward &amp;lt;- bandit(action)
+  reward &amp;lt;- rnorm(1, mean=rewardMeans[action])
+  rewardTotal[x] &amp;lt;- reward
+  rewardAverage[x] &amp;lt;- mean(rewardTotal)
+  countFunction[action] &amp;lt;- countFunction[action] +  1
+  valueFunction[action] &amp;lt;- valueFunction[action] + (1 / countFunction[action])*(reward - valueFunction[action])
+}
+
+averagerewardAverage &amp;lt;- rbind(averagerewardAverage,rewardAverage)
+averageactions &amp;lt;- rbind(averageactions, actions)
+}
+
+averagerewardAverage &amp;lt;- colMeans(averagerewardAverage)
+averageactions &amp;lt;- colMeans(averageactions)&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;let-us-plot-our-results-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Let us plot our results&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(averagerewardAverage)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-03-10-Multiarmed-Bandits_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;constant-step-size&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Constant Step Size&lt;/h1&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;averagerewardAverage &amp;lt;- vector()
+averageactions &amp;lt;- vector()
+
+
+for(w in 1:500) {
+# Setup our functions
+# Number of pokies
+k &amp;lt;- 10
+valueFunction &amp;lt;- vector()
+countFunction &amp;lt;- vector()
+
+for(i in 1:k) {
+  valueFunction[i] &amp;lt;- 0
+  countFunction[i] &amp;lt;- 0
+}
+
+# Number of steps
+T &amp;lt;- 1000
+rewardTotal &amp;lt;- vector()
+rewardAverage &amp;lt;- vector()
+actions &amp;lt;- vector()
+for(x in 1:T) {
+  epsilon &amp;lt;- 1
+  if(epsilon &amp;gt; sample(c(0:9), size=1)) {
+    action &amp;lt;- sample(c(1:k), size=1)
+  } else {
+     action &amp;lt;- which(valueFunction==max(valueFunction))[1]
+  }
+  actions[x] &amp;lt;- action
+  # reward &amp;lt;- bandit(action)
+  reward &amp;lt;- rnorm(1, mean=rewardMeans[action])
+  rewardTotal[x] &amp;lt;- reward
+  rewardAverage[x] &amp;lt;- mean(rewardTotal)
+  countFunction[action] &amp;lt;- countFunction[action] +  1
+  valueFunction[action] &amp;lt;- valueFunction[action] + 0.05*(reward - valueFunction[action])
+}
+
+averagerewardAverage &amp;lt;- rbind(averagerewardAverage,rewardAverage)
+averageactions &amp;lt;- rbind(averageactions, actions)
+}
+
+averagerewardAverage &amp;lt;- colMeans(averagerewardAverage)
+averageactions &amp;lt;- colMeans(averageactions)&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;let-us-plot-our-results-2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Let us plot our results&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(averagerewardAverage)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-03-10-Multiarmed-Bandits_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;Pretty cool. Next post will be on Markov Decision Processes.&lt;/p&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references&#34;&gt;
+&lt;div id=&#34;ref-sutton1998reinforcement&#34;&gt;
+&lt;p&gt;Sutton, Richard S, and Andrew G Barto. 1998. &lt;em&gt;Reinforcement Learning: An Introduction&lt;/em&gt;. Vol. 1. 1. MIT press Cambridge.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
