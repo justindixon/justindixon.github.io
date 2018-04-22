@@ -17,11 +17,11 @@
       
     
   
-  <meta name="description" content="Introduction This is going to be part of series where I illustrate examples and questions from the brilliant book by Sutton and Barto Sutton and Barto (1998). You can download the pdf version of the newly updated book online, just google it. I am planning on going through each chapter and illustrating 1 or 2 examples from each chapter.
- MultiArmed Bandits What on earth is a mutliarmed bandit? It might be easier to think of it as which pokie you choose to play on down at the local.">
+  <meta name="description" content="Introduction In Markov Decision Processes you have: * Agent: The decision maker / learner. The agent sends an action to the environment. * Environment: Everything that is not the agent. The environment sends a reward back to the agent. * Reward: The signal that agent tries to maximize.
+ Example GridWorld Lets say we have a 5x5 grid. There are four possible actions: left, right, up, and down. If you reach the point (1,2) and move in any direction you recieve the reward of 10 and are moved to the point (5,2).">
 
   
-  <link rel="alternate" hreflang="en-us" href="/post/2018-03-10-multiarmed-bandits/">
+  <link rel="alternate" hreflang="en-us" href="/post/2018-03-18-finite-mdps/">
 
   
 
@@ -83,7 +83,7 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/post/2018-03-10-multiarmed-bandits/">
+  <link rel="canonical" href="/post/2018-03-18-finite-mdps/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -91,10 +91,10 @@
   <meta property="twitter:creator" content="@JustinTheDixon">
   
   <meta property="og:site_name" content="Justin Dixon">
-  <meta property="og:url" content="/post/2018-03-10-multiarmed-bandits/">
-  <meta property="og:title" content="Multiarmed Bandits: Chapter 2 IRL | Justin Dixon">
-  <meta property="og:description" content="Introduction This is going to be part of series where I illustrate examples and questions from the brilliant book by Sutton and Barto Sutton and Barto (1998). You can download the pdf version of the newly updated book online, just google it. I am planning on going through each chapter and illustrating 1 or 2 examples from each chapter.
- MultiArmed Bandits What on earth is a mutliarmed bandit? It might be easier to think of it as which pokie you choose to play on down at the local.">
+  <meta property="og:url" content="/post/2018-03-18-finite-mdps/">
+  <meta property="og:title" content="Finite Markov Decision Processes: Chapter 3 IRL | Justin Dixon">
+  <meta property="og:description" content="Introduction In Markov Decision Processes you have: * Agent: The decision maker / learner. The agent sends an action to the environment. * Environment: Everything that is not the agent. The environment sends a reward back to the agent. * Reward: The signal that agent tries to maximize.
+ Example GridWorld Lets say we have a 5x5 grid. There are four possible actions: left, right, up, and down. If you reach the point (1,2) and move in any direction you recieve the reward of 10 and are moved to the point (5,2).">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-02-10T21:13:14-05:00">
@@ -104,7 +104,7 @@
 
   
 
-  <title>Multiarmed Bandits: Chapter 2 IRL | Justin Dixon</title>
+  <title>Finite Markov Decision Processes: Chapter 3 IRL | Justin Dixon</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
@@ -244,7 +244,7 @@
 
 
   <div class="article-container">
-    <h1 itemprop="name">Multiarmed Bandits: Chapter 2 IRL</h1>
+    <h1 itemprop="name">Finite Markov Decision Processes: Chapter 3 IRL</h1>
 
     
 
@@ -263,14 +263,14 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    4 min read
+    2 min read
   </span>
   
 
   
   
   <span class="middot-divider"></span>
-  <a href="/post/2018-03-10-multiarmed-bandits/#disqus_thread"></a>
+  <a href="/post/2018-03-18-finite-mdps/#disqus_thread"></a>
   
 
   
@@ -293,35 +293,35 @@
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Multiarmed%20Bandits%3a%20Chapter%202%20IRL&amp;url=%2fpost%2f2018-03-10-multiarmed-bandits%2f"
+         href="https://twitter.com/intent/tweet?text=Finite%20Markov%20Decision%20Processes%3a%20Chapter%203%20IRL&amp;url=%2fpost%2f2018-03-18-finite-mdps%2f"
          target="_blank" rel="noopener">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2018-03-10-multiarmed-bandits%2f"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2f2018-03-18-finite-mdps%2f"
          target="_blank" rel="noopener">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2018-03-10-multiarmed-bandits%2f&amp;title=Multiarmed%20Bandits%3a%20Chapter%202%20IRL"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2f2018-03-18-finite-mdps%2f&amp;title=Finite%20Markov%20Decision%20Processes%3a%20Chapter%203%20IRL"
          target="_blank" rel="noopener">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2018-03-10-multiarmed-bandits%2f&amp;title=Multiarmed%20Bandits%3a%20Chapter%202%20IRL"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2f2018-03-18-finite-mdps%2f&amp;title=Finite%20Markov%20Decision%20Processes%3a%20Chapter%203%20IRL"
          target="_blank" rel="noopener">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Multiarmed%20Bandits%3a%20Chapter%202%20IRL&amp;body=%2fpost%2f2018-03-10-multiarmed-bandits%2f">
+         href="mailto:?subject=Finite%20Markov%20Decision%20Processes%3a%20Chapter%203%20IRL&amp;body=%2fpost%2f2018-03-18-finite-mdps%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -337,201 +337,82 @@
     <div class="article-style" itemprop="articleBody">
       <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>This is going to be part of series where I illustrate examples and questions from the brilliant book by Sutton and Barto <span class="citation">Sutton and Barto (1998)</span>. You can download the pdf version of the newly updated book online, just google it. I am planning on going through each chapter and illustrating 1 or 2 examples from each chapter.</p>
+<p>In Markov Decision Processes you have: * <em>Agent:</em> The decision maker / learner. The agent sends an action to the environment. * <em>Environment:</em> Everything that is not the agent. The environment sends a reward back to the agent. * <em>Reward:</em> The signal that agent tries to maximize.</p>
 </div>
-<div id="multiarmed-bandits" class="section level1">
-<h1>MultiArmed Bandits</h1>
-<p>What on earth is a mutliarmed bandit? It might be easier to think of it as which pokie you choose to play on down at the local. Say there are 10 pokies at the pub, then you need to decide which machine to game at. But you don’t know which machine will pay at the most so you need to explore and discover where the odds are at.</p>
-<p>Lets as describe a metric; return per dollar spent. That is for every dollar you put in a machine how much do get as a return? (0, 1.5,-.5)</p>
-<p>Let us setup 10 pokie machines with normal distributions but with differing mean returns.</p>
-<pre class="r"><code>rewardMeans &lt;- rnorm(10)
-plot(rewardMeans)</code></pre>
-<p><img src="/post/2018-03-10-Multiarmed-Bandits_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>From our little plot we can see that the best pokie is machine 3.</p>
-<p>Now let us set up our learning problem for our little agent to learn the best machine.</p>
-</div>
-<div id="the-algorithm" class="section level1">
-<h1>The algorithm</h1>
+<div id="example-gridworld" class="section level1">
+<h1>Example GridWorld</h1>
+<p>Lets say we have a 5x5 grid. There are four possible actions: left, right, up, and down. If you reach the point (1,2) and move in any direction you recieve the reward of 10 and are moved to the point (5,2). We can include another point, B, which when reached at (1,4) and move in any direction you recieve 5 and are moved to point (3,4).</p>
+<div id="value-function-solving-the-bellman-equation" class="section level2">
+<h2>Value Function / Solving The Bellman Equation</h2>
+<p>The equation:</p>
 <span class="math display">\[\begin{equation}
-\text{for the number of actions k, create:} \\
-\\
-valueFunction(action) = 0 \\
-countFunction(action) = 0 \\
-\\
 
-Repeat until iteration count is reached: \\\
-action &lt;-
-\begin{cases}
- \text{The action that maxes the valueFuntion with prob (1 - epsilon)} \\ 
- \text{A random action with prob epsilon} \\
-\end{cases}\\
-\\
-reward &lt;- bandit(action) \\
-countFunction(action) += 1 \\
-valueFunction(action) += \frac{1}{countFunction(action)}*(reward - valueFunction(action)) \\
+v_{\pi}(s) = \sum_{a} \pi(a|s)\sum_{s&#39;,r}p(s&#39;,r|s,a)[r+\gamma v_{\pi}(s&#39;)]
+
 \end{equation}\]</span>
-</div>
-<div id="programming-example" class="section level1">
-<h1>Programming Example</h1>
-<pre class="r"><code>averagerewardAverage &lt;- vector()
-averageactions &lt;- vector()
+<pre class="r"><code>
+gridWorld &lt;- matrix(data=0,nrow=5, ncol=5)
+state &lt;- c(1,1)
+nextState &lt;- c(1,1)
+discountRate &lt;- 0.9
 
-
-for(w in 1:500) {
-# Setup our functions
-# Number of pokies
-k &lt;- 10
-valueFunction &lt;- vector()
-countFunction &lt;- vector()
-
-for(i in 1:k) {
-  valueFunction[i] &lt;- 0
-  countFunction[i] &lt;- 0
+policyFunction &lt;- function(state) {
+  # action: 1=left,2=right,3=up,4=down
+  action &lt;- sample.int(c(1:4), 1)
+  return(action)
 }
 
-# Number of steps
-T &lt;- 1000
-rewardTotal &lt;- vector()
-rewardAverage &lt;- vector()
-actions &lt;- vector()
-for(x in 1:T) {
-  epsilon &lt;- 0.1
-  if(epsilon &gt; sample(c(0:9), size=1)) {
-    action &lt;- sample(c(1:k), size=1)
-  } else {
-     action &lt;- which(valueFunction==max(valueFunction))[1]
+stateTransitionFunction &lt;- function(state, action) {
+  if(all(state == c(1,2))) {
+    state &lt;- c(5,2)
+  } else if(all(state == c(1,4))) {
+    state &lt;- c(3,4)
+  } else if(action==1) {
+    state[1] &lt;- state[1] - 1
+  } else if(action==2) {
+    state[1] &lt;- state[1] + 1
+  } else if(action==3) {
+    state[2] &lt;- state[2] - 1
+  } else if(action==4) {
+    state[2] &lt;- state[2] + 1
   }
-  actions[x] &lt;- action
-  # reward &lt;- bandit(action)
-  reward &lt;- rnorm(1, mean=rewardMeans[action])
-  rewardTotal[x] &lt;- reward
-  rewardAverage[x] &lt;- mean(rewardTotal)
-  countFunction[action] &lt;- countFunction[action] +  1
-  valueFunction[action] &lt;- valueFunction[action] + (1 / countFunction[action])*(reward - valueFunction[action])
+  return(state)
 }
 
-averagerewardAverage &lt;- rbind(averagerewardAverage,rewardAverage)
-averageactions &lt;- rbind(averageactions, actions)
-}
-
-averagerewardAverage &lt;- colMeans(averagerewardAverage)
-averageactions &lt;- colMeans(averageactions)</code></pre>
-<div id="let-us-plot-our-results" class="section level2">
-<h2>Let us plot our results</h2>
-<pre class="r"><code>plot(averagerewardAverage)</code></pre>
-<p><img src="/post/2018-03-10-Multiarmed-Bandits_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Now considering our best slot machine has a payout of around 1.5 it seems out model is not that great at finding the best machine. This highlights the huge problem with reinforcement learning. That is it is HARD.</p>
-</div>
-</div>
-<div id="optimistic-initial-values-with-greedy-epsilon-0" class="section level1">
-<h1>Optimistic Initial values with greedy epsilon = 0</h1>
-<pre class="r"><code>averagerewardAverage &lt;- vector()
-averageactions &lt;- vector()
-
-
-for(w in 1:500) {
-# Setup our functions
-# Number of pokies
-k &lt;- 10
-valueFunction &lt;- vector()
-countFunction &lt;- vector()
-
-for(i in 1:k) {
-  valueFunction[i] &lt;- 10
-  countFunction[i] &lt;- 10
-}
-
-# Number of steps
-T &lt;- 1000
-rewardTotal &lt;- vector()
-rewardAverage &lt;- vector()
-actions &lt;- vector()
-for(x in 1:T) {
-  epsilon &lt;- 0
-  if(epsilon &gt; sample(c(0:9), size=1)) {
-    action &lt;- sample(c(1:k), size=1)
+stateRewardFunction &lt;- function(state, nextState) {
+  if(nextState[1] &lt; 1 || nextState[1] &gt; 5 || nextState[2] &lt; 1 || nextState[2] &gt; 5) {
+    return(c(-1, state))
+  } else if(all(nextState == c(5,2)) &amp;&amp; all(state == c(1,2))) {
+    return(c(10, nextState))
+  } else if(all(nextState == c(3,4)) &amp;&amp; all(state == c(1,4))) {
+    return(c(5, nextState))
   } else {
-     action &lt;- which(valueFunction==max(valueFunction))[1]
+    return(c(0, nextState))
   }
-  actions[x] &lt;- action
-  # reward &lt;- bandit(action)
-  reward &lt;- rnorm(1, mean=rewardMeans[action])
-  rewardTotal[x] &lt;- reward
-  rewardAverage[x] &lt;- mean(rewardTotal)
-  countFunction[action] &lt;- countFunction[action] +  1
-  valueFunction[action] &lt;- valueFunction[action] + (1 / countFunction[action])*(reward - valueFunction[action])
 }
 
-averagerewardAverage &lt;- rbind(averagerewardAverage,rewardAverage)
-averageactions &lt;- rbind(averageactions, actions)
+valueFunction &lt;- function(state) {
+  value &lt;- 0
+  for(i in 1:4) {
+    nextState &lt;- stateTransitionFunction(state, i)
+    reward &lt;- stateRewardFunction(state, nextState)[1]
+    nextState &lt;- c(stateRewardFunction(state, nextState)[2], stateRewardFunction(state, nextState)[3])
+    s &lt;- (nextState[1] - 1) * 5 + nextState[2]
+    # This doesnt work
+    # value &lt;- value + 0.25 * (reward + valueFunction(nextState))
+    value &lt;- value + 0.25 * (reward + discountRate * stateValue[s])
+    }
+  return(value)
 }
 
-averagerewardAverage &lt;- colMeans(averagerewardAverage)
-averageactions &lt;- colMeans(averageactions)</code></pre>
-<div id="let-us-plot-our-results-1" class="section level2">
-<h2>Let us plot our results</h2>
-<pre class="r"><code>plot(averagerewardAverage)</code></pre>
-<p><img src="/post/2018-03-10-Multiarmed-Bandits_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-<div id="constant-step-size" class="section level1">
-<h1>Constant Step Size</h1>
-<pre class="r"><code>averagerewardAverage &lt;- vector()
-averageactions &lt;- vector()
-
-
-for(w in 1:500) {
-# Setup our functions
-# Number of pokies
-k &lt;- 10
-valueFunction &lt;- vector()
-countFunction &lt;- vector()
-
-for(i in 1:k) {
-  valueFunction[i] &lt;- 0
-  countFunction[i] &lt;- 0
-}
-
-# Number of steps
-T &lt;- 1000
-rewardTotal &lt;- vector()
-rewardAverage &lt;- vector()
-actions &lt;- vector()
-for(x in 1:T) {
-  epsilon &lt;- 1
-  if(epsilon &gt; sample(c(0:9), size=1)) {
-    action &lt;- sample(c(1:k), size=1)
-  } else {
-     action &lt;- which(valueFunction==max(valueFunction))[1]
+stateValue &lt;- matrix(data=0, nrow=25)
+# Need to iterate as I dont know how to solve a system of linear equations on the computer thing
+for(x in 1:100) {
+  for(s in 1:25) {
+  state &lt;- c((s-1) %/% 5 + 1, (s-1) %% 5 + 1)
+  stateValue[s] &lt;- valueFunction(state)
   }
-  actions[x] &lt;- action
-  # reward &lt;- bandit(action)
-  reward &lt;- rnorm(1, mean=rewardMeans[action])
-  rewardTotal[x] &lt;- reward
-  rewardAverage[x] &lt;- mean(rewardTotal)
-  countFunction[action] &lt;- countFunction[action] +  1
-  valueFunction[action] &lt;- valueFunction[action] + 0.05*(reward - valueFunction[action])
-}
-
-averagerewardAverage &lt;- rbind(averagerewardAverage,rewardAverage)
-averageactions &lt;- rbind(averageactions, actions)
-}
-
-averagerewardAverage &lt;- colMeans(averagerewardAverage)
-averageactions &lt;- colMeans(averageactions)</code></pre>
-<div id="let-us-plot-our-results-2" class="section level2">
-<h2>Let us plot our results</h2>
-<pre class="r"><code>plot(averagerewardAverage)</code></pre>
-<p><img src="/post/2018-03-10-Multiarmed-Bandits_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-<div id="conclusion" class="section level1">
-<h1>Conclusion</h1>
-<p>Pretty cool. Next post will be on Markov Decision Processes.</p>
-<div id="refs" class="references">
-<div id="ref-sutton1998reinforcement">
-<p>Sutton, Richard S, and Andrew G Barto. 1998. <em>Reinforcement Learning: An Introduction</em>. Vol. 1. 1. MIT press Cambridge.</p>
-</div>
+}</code></pre>
 </div>
 </div>
 
@@ -542,7 +423,7 @@ averageactions &lt;- colMeans(averageactions)</code></pre>
 
 <div class="article-tags">
   
-  <a class="btn btn-primary btn-outline" href="/tags/multiarmed-bandits">Multiarmed Bandits</a>
+  <a class="btn btn-primary btn-outline" href="/tags/finite-markov-decision-processes">Finite Markov Decision Processes</a>
   
   <a class="btn btn-primary btn-outline" href="/tags/reinforcement-learning">Reinforcement Learning</a>
   
@@ -560,11 +441,11 @@ averageactions &lt;- colMeans(averageactions)</code></pre>
       <h3>Related</h3>
       <ul>
         
-        <li><a href="/post/2018-03-18-temporal-difference-learning/">Temporal Difference Learning: Chapter 6 IRL</a></li>
-        
         <li><a href="/post/2018-03-18-monte-carlo-learning/">Monte Carlo Methods: Chapter 5 IRL</a></li>
         
-        <li><a href="/post/2018-03-18-finite-mdps/">Finite Markov Decision Processes: Chapter 3 IRL</a></li>
+        <li><a href="/post/2018-03-10-multiarmed-bandits/">Multiarmed Bandits: Chapter 2 IRL</a></li>
+        
+        <li><a href="/post/2018-03-18-temporal-difference-learning/">Temporal Difference Learning: Chapter 6 IRL</a></li>
         
         <li><a href="/post/2018-03-18-dynamic-programming/">Dynamic Programming: Chapter 4 IRL</a></li>
         

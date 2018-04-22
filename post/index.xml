@@ -160,7 +160,173 @@ payoffNadal = \frac{effortNadal}{effortRoger + effortNadal} * 0.25 - effortNadal
     </item>
     
     <item>
-      <title>Multiarmed Bandits: Chapter 1 IRL</title>
+      <title>Dynamic Programming: Chapter 4 IRL</title>
+      <link>/post/2018-03-18-dynamic-programming/</link>
+      <pubDate>Sat, 10 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-03-18-dynamic-programming/</guid>
+      <description>&lt;div id=&#34;introduction&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;/div&gt;
+&lt;div id=&#34;policy-evaluation-prediction&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Policy Evaluation (Prediction)&lt;/h1&gt;
+&lt;div id=&#34;algorithm&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Algorithm&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;policy-improvement&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Policy Improvement&lt;/h1&gt;
+&lt;div id=&#34;algorithm-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Algorithm&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-1&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;policy-iteration&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Policy Iteration&lt;/h1&gt;
+&lt;div id=&#34;algorithm-2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Algorithm&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;value-iteration&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Value Iteration&lt;/h1&gt;
+&lt;div id=&#34;algorithm-3&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Algorithm&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-3&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;asynchronous-dynamic-programming&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Asynchronous Dynamic Programming&lt;/h1&gt;
+&lt;p&gt;Dont sweep the entire state space.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;generalized-policy-iteration&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Generalized Policy Iteration&lt;/h1&gt;
+&lt;p&gt;evaluation then improvement then evaluation then improvement then evaluation&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Finite Markov Decision Processes: Chapter 3 IRL</title>
+      <link>/post/2018-03-18-finite-mdps/</link>
+      <pubDate>Sat, 10 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-03-18-finite-mdps/</guid>
+      <description>&lt;div id=&#34;introduction&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;In Markov Decision Processes you have: * &lt;em&gt;Agent:&lt;/em&gt; The decision maker / learner. The agent sends an action to the environment. * &lt;em&gt;Environment:&lt;/em&gt; Everything that is not the agent. The environment sends a reward back to the agent. * &lt;em&gt;Reward:&lt;/em&gt; The signal that agent tries to maximize.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;example-gridworld&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Example GridWorld&lt;/h1&gt;
+&lt;p&gt;Lets say we have a 5x5 grid. There are four possible actions: left, right, up, and down. If you reach the point (1,2) and move in any direction you recieve the reward of 10 and are moved to the point (5,2). We can include another point, B, which when reached at (1,4) and move in any direction you recieve 5 and are moved to point (3,4).&lt;/p&gt;
+&lt;div id=&#34;value-function-solving-the-bellman-equation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Value Function / Solving The Bellman Equation&lt;/h2&gt;
+&lt;p&gt;The equation:&lt;/p&gt;
+&lt;span class=&#34;math display&#34;&gt;\[\begin{equation}
+
+v_{\pi}(s) = \sum_{a} \pi(a|s)\sum_{s&amp;#39;,r}p(s&amp;#39;,r|s,a)[r+\gamma v_{\pi}(s&amp;#39;)]
+
+\end{equation}\]&lt;/span&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+gridWorld &amp;lt;- matrix(data=0,nrow=5, ncol=5)
+state &amp;lt;- c(1,1)
+nextState &amp;lt;- c(1,1)
+discountRate &amp;lt;- 0.9
+
+policyFunction &amp;lt;- function(state) {
+  # action: 1=left,2=right,3=up,4=down
+  action &amp;lt;- sample.int(c(1:4), 1)
+  return(action)
+}
+
+stateTransitionFunction &amp;lt;- function(state, action) {
+  if(all(state == c(1,2))) {
+    state &amp;lt;- c(5,2)
+  } else if(all(state == c(1,4))) {
+    state &amp;lt;- c(3,4)
+  } else if(action==1) {
+    state[1] &amp;lt;- state[1] - 1
+  } else if(action==2) {
+    state[1] &amp;lt;- state[1] + 1
+  } else if(action==3) {
+    state[2] &amp;lt;- state[2] - 1
+  } else if(action==4) {
+    state[2] &amp;lt;- state[2] + 1
+  }
+  return(state)
+}
+
+stateRewardFunction &amp;lt;- function(state, nextState) {
+  if(nextState[1] &amp;lt; 1 || nextState[1] &amp;gt; 5 || nextState[2] &amp;lt; 1 || nextState[2] &amp;gt; 5) {
+    return(c(-1, state))
+  } else if(all(nextState == c(5,2)) &amp;amp;&amp;amp; all(state == c(1,2))) {
+    return(c(10, nextState))
+  } else if(all(nextState == c(3,4)) &amp;amp;&amp;amp; all(state == c(1,4))) {
+    return(c(5, nextState))
+  } else {
+    return(c(0, nextState))
+  }
+}
+
+valueFunction &amp;lt;- function(state) {
+  value &amp;lt;- 0
+  for(i in 1:4) {
+    nextState &amp;lt;- stateTransitionFunction(state, i)
+    reward &amp;lt;- stateRewardFunction(state, nextState)[1]
+    nextState &amp;lt;- c(stateRewardFunction(state, nextState)[2], stateRewardFunction(state, nextState)[3])
+    s &amp;lt;- (nextState[1] - 1) * 5 + nextState[2]
+    # This doesnt work
+    # value &amp;lt;- value + 0.25 * (reward + valueFunction(nextState))
+    value &amp;lt;- value + 0.25 * (reward + discountRate * stateValue[s])
+    }
+  return(value)
+}
+
+stateValue &amp;lt;- matrix(data=0, nrow=25)
+# Need to iterate as I dont know how to solve a system of linear equations on the computer thing
+for(x in 1:100) {
+  for(s in 1:25) {
+  state &amp;lt;- c((s-1) %/% 5 + 1, (s-1) %% 5 + 1)
+  stateValue[s] &amp;lt;- valueFunction(state)
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Monte Carlo Methods: Chapter 5 IRL</title>
+      <link>/post/2018-03-18-monte-carlo-learning/</link>
+      <pubDate>Sat, 10 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-03-18-monte-carlo-learning/</guid>
+      <description>&lt;div id=&#34;r-markdown&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;R Markdown&lt;/h2&gt;
+&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When you click the &lt;strong&gt;Knit&lt;/strong&gt; button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;including-plots&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Including Plots&lt;/h2&gt;
+&lt;p&gt;You can also embed plots, for example:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-03-18-Monte-Carlo-Learning_files/figure-html/pressure-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Note that the &lt;code&gt;echo = FALSE&lt;/code&gt; parameter was added to the code chunk to prevent printing of the R code that generated the plot.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Multiarmed Bandits: Chapter 2 IRL</title>
       <link>/post/2018-03-10-multiarmed-bandits/</link>
       <pubDate>Sat, 10 Feb 2018 21:13:14 -0500</pubDate>
       
@@ -363,6 +529,27 @@ averageactions &amp;lt;- colMeans(averageactions)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Sutton, Richard S, and Andrew G Barto. 1998. &lt;em&gt;Reinforcement Learning: An Introduction&lt;/em&gt;. Vol. 1. 1. MIT press Cambridge.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Temporal Difference Learning: Chapter 6 IRL</title>
+      <link>/post/2018-03-18-temporal-difference-learning/</link>
+      <pubDate>Sat, 10 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-03-18-temporal-difference-learning/</guid>
+      <description>&lt;div id=&#34;r-markdown&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;R Markdown&lt;/h2&gt;
+&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When you click the &lt;strong&gt;Knit&lt;/strong&gt; button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;including-plots&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Including Plots&lt;/h2&gt;
+&lt;p&gt;You can also embed plots, for example:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-03-18-Temporal-Difference-Learning_files/figure-html/pressure-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Note that the &lt;code&gt;echo = FALSE&lt;/code&gt; parameter was added to the code chunk to prevent printing of the R code that generated the plot.&lt;/p&gt;
 &lt;/div&gt;
 </description>
     </item>
