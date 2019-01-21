@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Contest Theory on Justin Dixon</title>
+    <link>/tags/contest-theory/</link>
+    <description>Recent content in Contest Theory on Justin Dixon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Wed, 28 Feb 2018 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/contest-theory/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Contest Theory</title>
+      <link>/post/2018-02-28-contest-theory/</link>
+      <pubDate>Wed, 28 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-02-28-contest-theory/</guid>
+      <description>What is Contest Theory? Contest theory is a tool to describe situation where agents compete with costly efforts to win a scare prize. Quick tips: - agent: economic agent abstraction, examples include workers, sports people etc. - costly efforts: This just means the agent has to make a decision. Ie they do have infinity effort to try to win. Think of the contest people tennis players. A player cannot give 110%, it is physically impossible.</description>
+    </item>
+    
+    <item>
+      <title>Discouragement Effect</title>
+      <link>/post/2018-03-06-discouragement-effect/</link>
+      <pubDate>Wed, 28 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-03-06-discouragement-effect/</guid>
+      <description>What is the Discouragement Effect? The discouragement effect is when the future consequences of winning or losing the current contest leads to decreased effort Konrad (2012). This is due the future contest reducing the overall value of winning. Think about a tennis match with 3 sets. If a player loses the first set then to win the entire match they must win 2 sets compared to the other player only needing to win 1 match.</description>
+    </item>
+    
+  </channel>
+</rss>

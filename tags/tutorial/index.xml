@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorial on Justin Dixon</title>
+    <link>/tags/tutorial/</link>
+    <description>Recent content in Tutorial on Justin Dixon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Sat, 10 Feb 2018 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Finite Markov Decision Processes: Chapter 3 IRL</title>
+      <link>/post/2018-03-18-finite-mdps/</link>
+      <pubDate>Sat, 10 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-03-18-finite-mdps/</guid>
+      <description>Introduction In Markov Decision Processes you have: * Agent: The decision maker / learner. The agent sends an action to the environment. * Environment: Everything that is not the agent. The environment sends a reward back to the agent. * Reward: The signal that agent tries to maximize.
+ Example GridWorld Lets say we have a 5x5 grid. There are four possible actions: left, right, up, and down. If you reach the point (1,2) and move in any direction you recieve the reward of 10 and are moved to the point (5,2).</description>
+    </item>
+    
+    <item>
+      <title>Multiarmed Bandits: Chapter 2 IRL</title>
+      <link>/post/2018-03-10-multiarmed-bandits/</link>
+      <pubDate>Sat, 10 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-03-10-multiarmed-bandits/</guid>
+      <description>Introduction This is going to be part of series where I illustrate examples and questions from the brilliant book by Sutton and Barto Sutton and Barto (1998). You can download the pdf version of the newly updated book online, just google it. I am planning on going through each chapter and illustrating 1 or 2 examples from each chapter.
+ MultiArmed Bandits What on earth is a mutliarmed bandit? It might be easier to think of it as which pokie you choose to play on down at the local.</description>
+    </item>
+    
+    <item>
+      <title>XOR Deep Learning Example</title>
+      <link>/post/2018-02-02-xor-deep-learning/</link>
+      <pubDate>Fri, 02 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-02-02-xor-deep-learning/</guid>
+      <description>The Problem OpenAI recently released some open research questions. As a beginner in AI I decided to tackle the begineer ‘Warmups’ they have offered. You can view their blog post here:
+ ⭐ Train an LSTM to solve the XOR problem: that is, given a sequence of bits, determine its parity. The LSTM should consume the sequence, one bit at a time, and then output the correct answer at the sequence’s end.</description>
+    </item>
+    
+    <item>
+      <title>Random Forests</title>
+      <link>/post/2018-03-04-random-forests/</link>
+      <pubDate>Wed, 31 Jan 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-03-04-random-forests/</guid>
+      <description>Introduction Following on from the previous post about decision trees let us move on to Random Forests. Let us use the Soybean data from the ‘mlbench’ package. There are 35 features and 683 observations with 16 varieties of Soybean.
+ Why care about Random Forests? Let us look at how our decision trees predict previous unseen data. First we will load the data in:
+library(mlbench) library(caret) data(&amp;quot;BreastCancer&amp;quot;) dim(BreastCancer) Let us now split the data up into a training and test data set.</description>
+    </item>
+    
+    <item>
+      <title>Who is the angriest?</title>
+      <link>/post/2018-08-18-who-is-the-angriest/</link>
+      <pubDate>Wed, 31 Jan 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-08-18-who-is-the-angriest/</guid>
+      <description>Overall sentiments - magnitude overallData &amp;lt;- subset(sentimentData, select = c(&amp;#39;file&amp;#39;,&amp;#39;Date&amp;#39;,&amp;#39;magnitude&amp;#39;,&amp;#39;score&amp;#39;)) p &amp;lt;- ggplot(overallData, aes(x=Date, y = magnitude, colour=file)) + geom_line() + ggtitle(&amp;#39;Overall show sentiment magnitude&amp;#39;) + xlab(&amp;#39;Date&amp;#39;) + ylab(&amp;#39;Magnitude&amp;#39;) + labs(color=&amp;quot;Shock Jock&amp;quot;) + theme_bw() p ggsave(&amp;#39;1.png&amp;#39;,p)  Overall sentiments - score p &amp;lt;- ggplot(overallData, aes(x=Date, y = score, colour=file)) + geom_line() + ggtitle(&amp;#39;Overall show sentiment score&amp;#39;) + xlab(&amp;#39;Date&amp;#39;) + ylab(&amp;#39;Score&amp;#39;) + labs(color=&amp;quot;Shock Jock&amp;quot;) + theme_bw() p ggsave(&amp;#39;2.png&amp;#39;,p)  Segment Analysis - By Day - 1st August dateData &amp;lt;- filter(sentimentData, sentimentData$Date == &amp;#39;2018-08-01&amp;#39;) dateData &amp;lt;- mutate(dateData, percentageDone = case_when( file == &amp;#39;Ben Fordham&amp;#39; ~ X / nrow(filter(dateData, file == &amp;#39;Ben Fordham&amp;#39;)), file == &amp;#39;Ray Hadley&amp;#39; ~ X / nrow(filter(dateData, file == &amp;#39;Ray Hadley&amp;#39;)), file == &amp;#39;Chris Smith&amp;#39; ~ X / nrow(filter(dateData, file == &amp;#39;Chris Smith&amp;#39;)), file == &amp;#39;Alan Jones&amp;#39; ~ X / nrow(filter(dateData, file == &amp;#39;Alan Jones&amp;#39;)) )) p &amp;lt;- ggplot(dateData, aes(x=percentageDone, y = sentiment.</description>
+    </item>
+    
+  </channel>
+</rss>

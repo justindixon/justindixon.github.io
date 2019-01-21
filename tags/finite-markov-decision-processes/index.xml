@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Finite Markov Decision Processes on Justin Dixon</title>
+    <link>/tags/finite-markov-decision-processes/</link>
+    <description>Recent content in Finite Markov Decision Processes on Justin Dixon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Sat, 10 Feb 2018 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/finite-markov-decision-processes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Finite Markov Decision Processes: Chapter 3 IRL</title>
+      <link>/post/2018-03-18-finite-mdps/</link>
+      <pubDate>Sat, 10 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-03-18-finite-mdps/</guid>
+      <description>Introduction In Markov Decision Processes you have: * Agent: The decision maker / learner. The agent sends an action to the environment. * Environment: Everything that is not the agent. The environment sends a reward back to the agent. * Reward: The signal that agent tries to maximize.
+ Example GridWorld Lets say we have a 5x5 grid. There are four possible actions: left, right, up, and down. If you reach the point (1,2) and move in any direction you recieve the reward of 10 and are moved to the point (5,2).</description>
+    </item>
+    
+  </channel>
+</rss>

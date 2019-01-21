@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Justin Dixon</title>
+    <link>/tags/python/</link>
+    <description>Recent content in Python on Justin Dixon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Fri, 02 Feb 2018 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>XOR Deep Learning Example</title>
+      <link>/post/2018-02-02-xor-deep-learning/</link>
+      <pubDate>Fri, 02 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-02-02-xor-deep-learning/</guid>
+      <description>The Problem OpenAI recently released some open research questions. As a beginner in AI I decided to tackle the begineer ‘Warmups’ they have offered. You can view their blog post here:
+ ⭐ Train an LSTM to solve the XOR problem: that is, given a sequence of bits, determine its parity. The LSTM should consume the sequence, one bit at a time, and then output the correct answer at the sequence’s end.</description>
+    </item>
+    
+  </channel>
+</rss>

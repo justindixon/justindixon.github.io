@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deep Learning on Justin Dixon</title>
+    <link>/categories/deep-learning/</link>
+    <description>Recent content in Deep Learning on Justin Dixon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Fri, 02 Feb 2018 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/categories/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>XOR Deep Learning Example</title>
+      <link>/post/2018-02-02-xor-deep-learning/</link>
+      <pubDate>Fri, 02 Feb 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-02-02-xor-deep-learning/</guid>
+      <description>The Problem OpenAI recently released some open research questions. As a beginner in AI I decided to tackle the begineer ‘Warmups’ they have offered. You can view their blog post here:
+ ⭐ Train an LSTM to solve the XOR problem: that is, given a sequence of bits, determine its parity. The LSTM should consume the sequence, one bit at a time, and then output the correct answer at the sequence’s end.</description>
+    </item>
+    
+    <item>
+      <title>Decision Trees</title>
+      <link>/post/2018-01-22-decisioin-trees/</link>
+      <pubDate>Wed, 31 Jan 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-01-22-decisioin-trees/</guid>
+      <description>Have you been struggling to learn about what decision trees are? Finding it difficult to link pictures of trees with machine learning algorithms? If you answered yes to these questions then this post is for you.
+Decision trees are an amazingly powerful predictive machine learning method that all Data Analysts should know. When I was researching tree-based methods I could never find a hand worked problem. Most other souces simply list the maths, or show the results of a grown tree.</description>
+    </item>
+    
+  </channel>
+</rss>

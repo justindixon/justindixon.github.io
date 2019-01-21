@@ -2,6 +2,29 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
     
+    <url>
+    
+      <loc>/tutorial/example/</loc>
+      <lastmod>2018-09-09T00:00:00+10:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tutorial/</loc>
+      <lastmod>2018-09-09T00:00:00+10:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/privacy/</loc>
+      <lastmod>2018-06-28T00:00:00+10:00</lastmod>
+    </url>
+    
+  
     
     <url>
     
@@ -11,7 +34,6 @@
     
   
     
-    
     <url>
     
       <loc>/post/2018-03-06-discouragement-effect/</loc>
@@ -19,16 +41,6 @@
     </url>
     
   
-    
-    
-    <url>
-    
-      <loc>/post/2018-03-18-dynamic-programming/</loc>
-      <lastmod>2018-02-10T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
     
     <url>
     
@@ -38,16 +50,6 @@
     
   
     
-    
-    <url>
-    
-      <loc>/post/2018-03-18-monte-carlo-learning/</loc>
-      <lastmod>2018-02-10T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
-    
     <url>
     
       <loc>/post/2018-03-10-multiarmed-bandits/</loc>
@@ -55,16 +57,6 @@
     </url>
     
   
-    
-    
-    <url>
-    
-      <loc>/post/2018-03-18-temporal-difference-learning/</loc>
-      <lastmod>2018-02-10T21:13:14-05:00</lastmod>
-    </url>
-    
-  
-    
     
     <url>
     
@@ -74,7 +66,6 @@
     
   
     
-    
     <url>
     
       <loc>/post/2018-01-22-decisioin-trees/</loc>
@@ -82,7 +73,6 @@
     </url>
     
   
-    
     
     <url>
     
@@ -92,6 +82,13 @@
     
   
     
+    <url>
+    
+      <loc>/post/2018-08-18-who-is-the-angriest/</loc>
+      <lastmod>2018-01-31T21:13:14-05:00</lastmod>
+    </url>
+    
+  
     
     <url>
     
@@ -101,7 +98,6 @@
     
   
     
-    
     <url>
     
       <loc>/publication/</loc>
@@ -109,7 +105,6 @@
     </url>
     
   
-    
     
     <url>
     
@@ -119,7 +114,6 @@
     
   
     
-    
     <url>
     
       <loc>/talk/example-talk/</loc>
@@ -127,7 +121,6 @@
     </url>
     
   
-    
     
     <url>
     
@@ -137,6 +130,20 @@
     
   
     
+    <url>
+    
+      <loc>/author/admin/</loc>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/author/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
     
     <url>
     
@@ -145,17 +152,6 @@
     </url>
     
   
-    
-    
-    <url>
-    
-      <loc>/categories/contest-theory/</loc>
-      <lastmod>2018-02-28T21:13:14-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
     
     <url>
     
@@ -166,16 +162,14 @@
     
   
     
-    
     <url>
     
-      <loc>/categories/data-analysis/</loc>
-      <lastmod>2018-01-31T21:13:14-05:00</lastmod>
+      <loc>/categories/contest-theory/</loc>
+      <lastmod>2018-02-28T21:13:14-05:00</lastmod>
       <priority>0</priority>
     </url>
     
   
-    
     
     <url>
     
@@ -186,6 +180,14 @@
     
   
     
+    <url>
+    
+      <loc>/categories/data-analysis/</loc>
+      <lastmod>2018-01-31T21:13:14-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
     
     <url>
     
@@ -196,6 +198,14 @@
     
   
     
+    <url>
+    
+      <loc>/tags/deep-learning/</loc>
+      <lastmod>2018-02-02T21:13:14-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
     
     <url>
     
@@ -206,17 +216,6 @@
     
   
     
-    
-    <url>
-    
-      <loc>/tags/deep-learning/</loc>
-      <lastmod>2018-02-02T21:13:14-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
     <url>
     
       <loc>/tags/discouragement-effect/</loc>
@@ -225,17 +224,6 @@
     </url>
     
   
-    
-    
-    <url>
-    
-      <loc>/tags/dynamic-programming/</loc>
-      <lastmod>2018-02-10T21:13:14-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
     
     <url>
     
@@ -246,7 +234,6 @@
     
   
     
-    
     <url>
     
       <loc>/tags/finite-markov-decision-processes/</loc>
@@ -255,7 +242,6 @@
     </url>
     
   
-    
     
     <url>
     
@@ -266,16 +252,14 @@
     
   
     
-    
     <url>
     
-      <loc>/tags/monte-carlo/</loc>
-      <lastmod>2018-02-10T21:13:14-05:00</lastmod>
+      <loc>/tags/machine-learning/</loc>
+      <lastmod>2018-01-31T21:13:14-05:00</lastmod>
       <priority>0</priority>
     </url>
     
   
-    
     
     <url>
     
@@ -286,7 +270,6 @@
     
   
     
-    
     <url>
     
       <loc>/publication_types/</loc>
@@ -294,7 +277,6 @@
     </url>
     
   
-    
     
     <url>
     
@@ -305,7 +287,6 @@
     
   
     
-    
     <url>
     
       <loc>/tags/r/</loc>
@@ -314,7 +295,6 @@
     </url>
     
   
-    
     
     <url>
     
@@ -325,6 +305,14 @@
     
   
     
+    <url>
+    
+      <loc>/tags/reinforcement-learning/</loc>
+      <lastmod>2018-02-10T21:13:14-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
     
     <url>
     
@@ -335,16 +323,20 @@
     
   
     
-    
     <url>
     
-      <loc>/tags/reinforcement-learning/</loc>
-      <lastmod>2018-02-10T21:13:14-05:00</lastmod>
+      <loc>/slides/</loc>
       <priority>0</priority>
     </url>
     
   
     
+    <url>
+    
+      <loc>/slides/example-slides/</loc>
+    </url>
+    
+  
     
     <url>
     
@@ -354,17 +346,6 @@
     </url>
     
   
-    
-    
-    <url>
-    
-      <loc>/tags/temporal-difference-learning/</loc>
-      <lastmod>2018-02-10T21:13:14-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
     
     <url>
     

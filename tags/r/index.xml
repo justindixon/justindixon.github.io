@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on Justin Dixon</title>
+    <link>/tags/r/</link>
+    <description>Recent content in R on Justin Dixon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Wed, 31 Jan 2018 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Random Forests</title>
+      <link>/post/2018-03-04-random-forests/</link>
+      <pubDate>Wed, 31 Jan 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-03-04-random-forests/</guid>
+      <description>Introduction Following on from the previous post about decision trees let us move on to Random Forests. Let us use the Soybean data from the ‘mlbench’ package. There are 35 features and 683 observations with 16 varieties of Soybean.
+ Why care about Random Forests? Let us look at how our decision trees predict previous unseen data. First we will load the data in:
+library(mlbench) library(caret) data(&amp;quot;BreastCancer&amp;quot;) dim(BreastCancer) Let us now split the data up into a training and test data set.</description>
+    </item>
+    
+    <item>
+      <title>Who is the angriest?</title>
+      <link>/post/2018-08-18-who-is-the-angriest/</link>
+      <pubDate>Wed, 31 Jan 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/2018-08-18-who-is-the-angriest/</guid>
+      <description>Overall sentiments - magnitude overallData &amp;lt;- subset(sentimentData, select = c(&amp;#39;file&amp;#39;,&amp;#39;Date&amp;#39;,&amp;#39;magnitude&amp;#39;,&amp;#39;score&amp;#39;)) p &amp;lt;- ggplot(overallData, aes(x=Date, y = magnitude, colour=file)) + geom_line() + ggtitle(&amp;#39;Overall show sentiment magnitude&amp;#39;) + xlab(&amp;#39;Date&amp;#39;) + ylab(&amp;#39;Magnitude&amp;#39;) + labs(color=&amp;quot;Shock Jock&amp;quot;) + theme_bw() p ggsave(&amp;#39;1.png&amp;#39;,p)  Overall sentiments - score p &amp;lt;- ggplot(overallData, aes(x=Date, y = score, colour=file)) + geom_line() + ggtitle(&amp;#39;Overall show sentiment score&amp;#39;) + xlab(&amp;#39;Date&amp;#39;) + ylab(&amp;#39;Score&amp;#39;) + labs(color=&amp;quot;Shock Jock&amp;quot;) + theme_bw() p ggsave(&amp;#39;2.png&amp;#39;,p)  Segment Analysis - By Day - 1st August dateData &amp;lt;- filter(sentimentData, sentimentData$Date == &amp;#39;2018-08-01&amp;#39;) dateData &amp;lt;- mutate(dateData, percentageDone = case_when( file == &amp;#39;Ben Fordham&amp;#39; ~ X / nrow(filter(dateData, file == &amp;#39;Ben Fordham&amp;#39;)), file == &amp;#39;Ray Hadley&amp;#39; ~ X / nrow(filter(dateData, file == &amp;#39;Ray Hadley&amp;#39;)), file == &amp;#39;Chris Smith&amp;#39; ~ X / nrow(filter(dateData, file == &amp;#39;Chris Smith&amp;#39;)), file == &amp;#39;Alan Jones&amp;#39; ~ X / nrow(filter(dateData, file == &amp;#39;Alan Jones&amp;#39;)) )) p &amp;lt;- ggplot(dateData, aes(x=percentageDone, y = sentiment.</description>
+    </item>
+    
+  </channel>
+</rss>
